@@ -35,9 +35,9 @@
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-ear-plugin</artifactId>
-            <version>2.6</version>
+            <version>${version.ear.plugin}</version>
             <configuration>
-               <!-- Tell Maven we are using Java EE 6 -->
+               <!-- Tell Maven we are using Java EE 7 -->
                <version>6</version>
                <!-- Use Java EE ear libraries as needed. Java EE ear libraries 
                   are in easy way to package any libraries needed in the ear, and automatically 
@@ -55,17 +55,16 @@
                </modules>
             </configuration>
          </plugin>
-         <!-- The JBoss AS plugin deploys your ear to a local JBoss AS container -->
-         <!-- Due to Maven's lack of intelligence with EARs we need to configure 
-            the jboss-as maven plugin to skip deployment for all modules. We then enable 
-            it specifically in the ear module. -->
-         <plugin>
-            <groupId>org.jboss.as.plugins</groupId>
-            <artifactId>jboss-as-maven-plugin</artifactId>
-            <configuration>
-               <skip>false</skip>
-            </configuration>
-         </plugin>
+          <!-- WildFly plugin to deploy ear -->
+          <plugin>
+              <groupId>org.wildfly.plugins</groupId>
+              <artifactId>wildfly-maven-plugin</artifactId>
+              <version>${version.wildfly.maven.plugin}</version>
+              <configuration>
+                  <filename>${project.artifactId}.ear</filename>
+                  <skip>false</skip>
+              </configuration>
+          </plugin>
       </plugins>
    </build>
 
