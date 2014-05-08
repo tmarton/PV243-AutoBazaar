@@ -22,10 +22,6 @@ public class CompanyInfo implements Serializable {
 	@Id
 	private Long id;
 	
-	@OneToOne
-	@NotNull
-	private Account account;	
-	
 	@Column(name = "zip_code")
 	private int zipCode;
 	
@@ -54,9 +50,6 @@ public class CompanyInfo implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
-	}   
-	public Account getAccount() {
-		return this.account;
 	}
 
 	public int getZipCode() {
@@ -94,9 +87,6 @@ public class CompanyInfo implements Serializable {
 	}
 	public void setEmail(String email) {
 		this.email = email;
-	}
-	public void setAccount(Account account) {
-		this.account = account;
 	}
    
 	

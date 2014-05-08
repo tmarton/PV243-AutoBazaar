@@ -21,10 +21,7 @@ public class Account implements Serializable {
 	@Id
 	@GeneratedValue
 	private Long id;
-	
-	@OneToOne
-	private Member member;
-	
+		
 	@Column(name="is_active")
 	private boolean isActive;
 	
@@ -48,14 +45,6 @@ public class Account implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}   
-	
-	public Member getMember() {
-		return member;
-	}
-	
-	public void setMember(Member member) {
-		this.member = member;
-	}
 	
 	public boolean getIsActive() {
 		return this.isActive;
