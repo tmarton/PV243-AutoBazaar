@@ -9,7 +9,8 @@ import javax.validation.constraints.NotNull;
 
 /**
  * Entity implementation class for Entity: VehicleBrand
- *
+ *	
+ * @author dubrouski
  */
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "name"))

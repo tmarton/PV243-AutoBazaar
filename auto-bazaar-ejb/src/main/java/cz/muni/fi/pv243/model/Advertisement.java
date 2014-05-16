@@ -13,7 +13,8 @@ import cz.muni.fi.pv243.enums.VehicleBodyType;
 
 /**
  * Entity implementation class for Entity: Advertisement
- *
+ * 
+ * @author dubrouski
  */
 @Entity
 @XmlRootElement
@@ -59,7 +60,7 @@ public class Advertisement implements Serializable {
 	@NotNull
 	private String description;
 	
-	@OneToMany
+	@OneToMany(mappedBy="advertisement")
 	private List<VehiclePhoto> vehiclePhotos;	
 	
 	public Advertisement() {

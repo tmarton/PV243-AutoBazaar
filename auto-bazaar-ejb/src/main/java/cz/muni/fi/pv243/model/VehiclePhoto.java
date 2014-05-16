@@ -4,22 +4,34 @@ import java.io.Serializable;
 import java.lang.Long;
 import java.lang.String;
 import java.net.URL;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 /**
  * Entity implementation class for Entity: VehiclePhoto
  *
+ * @author dubrouski
  */
 @Entity
 
 public class VehiclePhoto implements Serializable {
-
+	
+	private static final long serialVersionUID = 1L;
 	   
 	@Id
+	@GeneratedValue
 	private Long id;
+	
 	private String comment;
+	
+	@NotNull
 	private URL url;
-	private static final long serialVersionUID = 1L;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="advertisement_id")
+	private Advertisement advertisement;
+	
 
 	public VehiclePhoto() {
 		super();
@@ -30,7 +42,7 @@ public class VehiclePhoto implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
-	}    
+	}   
 	public String getComment() {
 		return this.comment;
 	}
