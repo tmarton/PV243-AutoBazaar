@@ -11,7 +11,7 @@ import javax.persistence.*;
  */
 @Entity
 
-public class MemberToAccountConnection implements Serializable {
+public class MemberToSellingCompanyConnection implements Serializable {
 
 	@Id
 	@GeneratedValue
@@ -21,14 +21,14 @@ public class MemberToAccountConnection implements Serializable {
 	private Member member;
 	
 	@ManyToOne
-	private Account account;
+	private SellingCompany sellingCompany;
 	
 	//TODO	here will be placed info about member's role for the account (instead of description)
 	private String description;
 	
 	private static final long serialVersionUID = 1L;
 
-	public MemberToAccountConnection() {
+	public MemberToSellingCompanyConnection() { 
 		super();
 	}   
 	public Long getId() {
@@ -45,12 +45,12 @@ public class MemberToAccountConnection implements Serializable {
 	public void setMember(Member member) {
 		this.member = member;
 	}   
-	public Account getAccount() {
-		return this.account;
+	public SellingCompany getAccount() {
+		return this.sellingCompany;
 	}
 
-	public void setAccount(Account account) {
-		this.account = account;
+	public void setAccount(SellingCompany account) {
+		this.sellingCompany = account;
 	}   
 	public String getDescription() {
 		return this.description;

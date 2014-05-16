@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Digits;
@@ -20,7 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
-@Entity
+@Entity 
 @XmlRootElement
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class Member implements Serializable {
@@ -35,7 +34,7 @@ public class Member implements Serializable {
 	@Size(min = 1, max = 25)
 	@Pattern(regexp = "[A-Za-z ]*", message = "must contain only letters and spaces")
 	private String name;
-
+	
 	@NotNull
 	@NotEmpty
 	@Email
@@ -47,8 +46,8 @@ public class Member implements Serializable {
 	@Column(name = "phone_number")
 	private String phoneNumber;
 
-	@OneToMany(mappedBy="account")
-	private List<MemberToAccountConnection> connectedAccounts;
+	@OneToMany(mappedBy="sellingCompany")
+	private List<MemberToSellingCompanyConnection> connectedSellingCompanies;
 	
 	public Long getId() {
 		return id;
@@ -81,4 +80,6 @@ public class Member implements Serializable {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
+	
+	
 }

@@ -6,15 +6,13 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import cz.muni.fi.pv243.enums.AccountType;
-
 /**
  * Entity implementation class for Entity: Account
  *
  */
 @Entity
 
-public class Account implements Serializable {
+public class SellingCompany implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	   
@@ -25,24 +23,21 @@ public class Account implements Serializable {
 	@Column(name="is_active")
 	private boolean isActive;
 	
-	@Enumerated(EnumType.STRING)
-	private AccountType type;	
-	
 	/* if account type is set to company account, then company info is set */
 	@Column(name="company_info")
 	private CompanyInfo companyInfo;
 
 	@OneToMany(mappedBy="member")
-	private List<MemberToAccountConnection> connectedMembers;
+	private List<MemberToSellingCompanyConnection> connectedMembers;
 	
-	public Account() {
+	public SellingCompany() {
 		super();
 	}   
 	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Long id) { 
 		this.id = id;
 	}   
 	
@@ -53,23 +48,17 @@ public class Account implements Serializable {
 	public void setIsActive(boolean isActive) {
 		this.isActive = isActive;
 	}   
-	public AccountType getType() {
-		return this.type;
-	}
 
-	public void setType(AccountType type) {
-		this.type = type;
-	}
 	public CompanyInfo getCompanyInfo() {
 		return companyInfo;
 	}
 	public void setCompanyInfo(CompanyInfo companyInfo) {
 		this.companyInfo = companyInfo;
 	}
-	public List<MemberToAccountConnection> getConnectedMembers() {
+	public List<MemberToSellingCompanyConnection> getConnectedMembers() {
 		return connectedMembers;
 	}
-	public void setConnectedMembers(List<MemberToAccountConnection> connectedMembers) {
+	public void setConnectedMembers(List<MemberToSellingCompanyConnection> connectedMembers) {
 		this.connectedMembers = connectedMembers;
 	}
 	public void setActive(boolean isActive) {

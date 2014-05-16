@@ -2,6 +2,7 @@ package cz.muni.fi.pv243.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -26,7 +27,7 @@ public class Advertisement implements Serializable {
 	private long id;
 	
 	@ManyToOne
-	private Account account;
+	private SellingCompany sellingCompany;
 	
 	@Column(name = "creation_date")
 	private Date creationDate;
@@ -47,7 +48,7 @@ public class Advertisement implements Serializable {
 	@Column(name="engine_displacement")
 	private int engineDisplacement;
 	
-	@Column(name="fuel_type")
+	@Column(name="fuel_type") 
 	@Enumerated(EnumType.STRING)
 	private FuelType fuelType;
 	
@@ -57,6 +58,9 @@ public class Advertisement implements Serializable {
 	
 	@NotNull
 	private String description;
+	
+	@OneToMany
+	private List<VehiclePhoto> vehiclePhotos;	
 	
 	public Advertisement() {
 		super();
@@ -127,11 +131,11 @@ public class Advertisement implements Serializable {
 	public void setEngineDisplacement(int engineDisplacement) {
 		this.engineDisplacement = engineDisplacement;
 	}
-	public Account getAccount() {
-		return account;
+	public SellingCompany getSellingCompany() {
+		return sellingCompany;
 	}
-	public void setAccount(Account account) {
-		this.account = account;
+	public void setSellingCompany(SellingCompany company) {
+		this.sellingCompany = company;
 	}
 	
 	

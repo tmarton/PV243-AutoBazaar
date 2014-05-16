@@ -29,9 +29,7 @@ public class CompanyInfo implements Serializable {
 	
 	private String city;
 	
-	private String street;
-	
-	//TODO add remaining params
+	private String street; 
 
 	@NotNull
 	@Size(min = 10, max = 12)
