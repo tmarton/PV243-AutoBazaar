@@ -6,10 +6,13 @@ import java.util.List;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import cz.muni.fi.pv243.enums.FuelType;
 import cz.muni.fi.pv243.enums.VehicleBodyType;
+import org.hibernate.annotations.TypeDef;
+import org.hibernate.annotations.TypeDefs;
+import org.joda.time.DateTime;
+import org.joda.time.contrib.hibernate.PersistentDateTime;
 
 /**
  * Entity implementation class for Entity: Advertisement
@@ -17,8 +20,7 @@ import cz.muni.fi.pv243.enums.VehicleBodyType;
  * @author dubrouski
  */
 @Entity
-@XmlRootElement
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = "description"))
+@TypeDefs( { @TypeDef(name = "jodaDateTime", typeClass = PersistentDateTime.class) })
 public class Advertisement implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -28,10 +30,10 @@ public class Advertisement implements Serializable {
 	private long id;
 	
 	@ManyToOne
-	private SellingCompany sellingCompany;
+	private AdvertisingAccount advertisingAccount;
 	
 	@Column(name = "creation_date")
-	private Date creationDate;
+	private DateTime creationDate;
 	
 	@NotNull
 	@ManyToOne
@@ -73,11 +75,11 @@ public class Advertisement implements Serializable {
 	public void setId(long id) {
 		this.id = id;
 	}   
-	public Date getCreationDate() {
+	public DateTime getCreationDate() {
 		return this.creationDate;
 	}
 
-	public void setCreationDate(Date creationDate) {
+	public void setCreationDate(DateTime creationDate) {
 		this.creationDate = creationDate;
 	}
    
@@ -132,11 +134,11 @@ public class Advertisement implements Serializable {
 	public void setEngineDisplacement(int engineDisplacement) {
 		this.engineDisplacement = engineDisplacement;
 	}
-	public SellingCompany getSellingCompany() {
-		return sellingCompany;
+	public AdvertisingAccount getAdvertisingAccount() {
+		return advertisingAccount;
 	}
-	public void setSellingCompany(SellingCompany company) {
-		this.sellingCompany = company;
+	public void setAdvertisingAccount(AdvertisingAccount company) {
+		this.advertisingAccount = company;
 	}
 	
 	

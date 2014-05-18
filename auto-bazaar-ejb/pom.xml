@@ -14,8 +14,8 @@
 
    <name>auto-bazaar EJB module</name>
 
-   <dependencies>
 
+   <dependencies>
        <dependency>
            <groupId>javax.enterprise</groupId>
            <artifactId>cdi-api</artifactId>
@@ -42,6 +42,12 @@
 
        <dependency>
            <groupId>org.hibernate</groupId>
+           <artifactId>hibernate-core</artifactId>
+           <scope>provided</scope>
+       </dependency>
+
+       <dependency>
+           <groupId>org.hibernate</groupId>
            <artifactId>hibernate-validator</artifactId>
            <scope>provided</scope>
            <exclusions>
@@ -52,6 +58,35 @@
            </exclusions>
        </dependency>
 
+       <!--date dependencies-->
+       <dependency>
+           <groupId>joda-time</groupId>
+           <artifactId>joda-time-hibernate</artifactId>
+           <version>1.3</version>
+           <exclusions>
+               <exclusion>
+                   <artifactId>org.hibernate</artifactId>
+                   <groupId>hibernate</groupId>
+               </exclusion>
+               <exclusion>
+                   <artifactId>joda-time</artifactId>
+                   <groupId>joda-time</groupId>
+               </exclusion>
+           </exclusions>
+       </dependency>
+       <dependency>
+           <artifactId>joda-time</artifactId>
+           <groupId>joda-time</groupId>
+           <version>2.0</version>
+           <exclusions>
+               <exclusion>
+                   <groupId>junit</groupId>
+                   <artifactId>junit</artifactId>
+               </exclusion>
+           </exclusions>
+       </dependency>
+
+       <!--test dependencies-->
       <dependency>
          <groupId>junit</groupId>
          <artifactId>junit</artifactId>
@@ -68,6 +103,7 @@
            <artifactId>arquillian-protocol-servlet</artifactId>
            <scope>test</scope>
        </dependency>
+
    </dependencies>
 
    <build>

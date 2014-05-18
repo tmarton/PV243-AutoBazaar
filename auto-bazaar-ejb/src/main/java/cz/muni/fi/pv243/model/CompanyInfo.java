@@ -6,6 +6,7 @@ import java.lang.Long;
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 
@@ -32,8 +33,8 @@ public class CompanyInfo implements Serializable {
 	private String street; 
 
 	@NotNull
-	@Size(min = 10, max = 12)
-	@Digits(fraction = 0, integer = 12)
+    @Size(min = 9, max = 16)
+    @Pattern(regexp = "/^(\\+420|\\+421)? ?[0-9]{3} ?[0-9]{3} ?[0-9]{3}$/", message = "wrong phone number format")
 	private String phone;
 
 	@Email

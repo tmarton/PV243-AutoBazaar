@@ -3,24 +3,15 @@ package cz.muni.fi.pv243.model;
 import java.util.List;
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-import javax.validation.constraints.Digits;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
-@Entity 
-@XmlRootElement
+@Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class Member implements Serializable {
 	/** Default value included to remove warning. Remove or modify at will. **/
@@ -31,7 +22,7 @@ public class Member implements Serializable {
 	private Long id;
 
 	@NotNull
-	@Size(min = 1, max = 25)
+	@Size(min = 1, max = 50)
 	@Pattern(regexp = "[A-Za-z ]*", message = "must contain only letters and spaces")
 	private String name;
 	
@@ -41,13 +32,13 @@ public class Member implements Serializable {
 	private String email;
 
 	@NotNull
-	@Size(min = 10, max = 12)
-	@Digits(fraction = 0, integer = 12)
+	@Size(min = 9, max = 16)
+    @Pattern(regexp = "/^(\\+420|\\+421)? ?[0-9]{3} ?[0-9]{3} ?[0-9]{3}$/", message = "wrong phone number format")
 	@Column(name = "phone_number")
 	private String phoneNumber;
 
-	@OneToMany(mappedBy="sellingCompany")
-	private List<MemberToSellingCompanyConnection> connectedSellingCompanies;
+	@OneToMany(mappedBy="member", fetch = FetchType.LAZY)
+	private List<MemberAdvertisingAccount> advertisingAccounts;
 	
 	public Long getId() {
 		return id;
@@ -80,6 +71,12 @@ public class Member implements Serializable {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	
-	
+
+    public List<MemberAdvertisingAccount> getAdvertisingAccounts() {
+        return advertisingAccounts;
+    }
+
+    public void setAdvertisingAccounts(List<MemberAdvertisingAccount> advertisingAccounts) {
+        this.advertisingAccounts = advertisingAccounts;
+    }
 }
