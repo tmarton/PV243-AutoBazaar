@@ -2,32 +2,36 @@ package cz.muni.fi.pv243.test;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.io.File;
 import java.util.logging.Logger;
 
 import javax.inject.Inject;
 
-import cz.muni.fi.pv243.model.MemberAdvertisingAccount;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
+import org.jboss.shrinkwrap.api.ArchivePaths;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import cz.muni.fi.pv243.controller.MemberRegistration;
 import cz.muni.fi.pv243.model.Member;
-import cz.muni.fi.pv243.util.Resources;
 
 @RunWith(Arquillian.class)
 public class MemberRegistrationTest {
    @Deployment
    public static Archive<?> createTestArchive() {
-      return ShrinkWrap.create(WebArchive.class, "test.war")
+
+       return ShrinkWrap.create(WebArchive.class, "test.war")
             .addPackage("cz.muni.fi.pv243.model")
-            .addAsLibraries()
-            .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")
+            .addPackage("cz.muni.fi.pv243.enums")
+            .addAsLibraries(Maven.resolver().loadPomFromFile("pom.xml").resolve("joda-time:joda-time-hibernate").withTransitivity().asFile())
+            .addAsLibraries(Maven.resolver().loadPomFromFile("pom.xml").resolve("joda-time:joda-time").withTransitivity().asFile())
+            .addAsResource("META-INF/persistence.xml", ArchivePaths.create("META-INF/persistence.xml"))
             .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
    }
 
