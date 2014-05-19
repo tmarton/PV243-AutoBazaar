@@ -5,8 +5,12 @@ import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
 
 import javax.ejb.Stateless;
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
@@ -14,7 +18,10 @@ import java.util.List;
 /**
  * Created by tmarton.
  */
+@Named(value = "baseDao")
 @Stateless
+//@Dependent
+//@Transactional
 public class BaseDaoImpl<T, ID extends Serializable> implements BaseDao<T,ID> {
 
     @Inject
