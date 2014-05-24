@@ -51,6 +51,11 @@ public class BaseDaoImpl<T, ID extends Serializable> implements BaseDao<T,ID> {
     }
 
     @Override
+    public void removeAll() {
+        entityManager.createQuery("DELETE FROM " + persistentClass.getName()).executeUpdate();
+    }
+
+    @Override
     public List<T> getAll(){
        return entityManager.createQuery("FROM " + persistentClass.getName()).<T>getResultList();
     }

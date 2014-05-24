@@ -18,6 +18,8 @@ public interface BaseDao<T, ID extends Serializable> {
 
     public void remove(T entity);
 
+    void removeAll();
+
     public List<T> getAll();
 
     public List<T> getAllOrdered(String column, boolean ascending);

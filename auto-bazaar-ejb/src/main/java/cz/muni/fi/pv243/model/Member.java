@@ -25,15 +25,14 @@ public class Member implements Serializable {
 	@Size(min = 1, max = 50)
 	@Pattern(regexp = "[A-Za-z ]*", message = "must contain only letters and spaces")
 	private String name;
-	
-	@NotNull
+
 	@NotEmpty
 	@Email
 	private String email;
 
-	@NotNull
+	@NotEmpty
 	@Size(min = 9, max = 16)
-    @Pattern(regexp = "/^(\\+420|\\+421)? ?[0-9]{3} ?[0-9]{3} ?[0-9]{3}$/", message = "wrong phone number format")
+    @Pattern(regexp = "^(\\+420|\\+421)? ?[0-9]{3} ?[0-9]{3} ?[0-9]{3}$", message = "wrong phone number format")
 	@Column(name = "phone_number")
 	private String phoneNumber;
 

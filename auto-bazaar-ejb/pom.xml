@@ -158,9 +158,9 @@
          <!-- Seperate profiles are provided for running all tests, including 
             Arquillian tests that execute in the specified container -->
          <id>default</id>
-         <activation>
-            <activeByDefault>true</activeByDefault>
-         </activation>
+          <activation>
+              <activeByDefault>true</activeByDefault>
+          </activation>
          <build>
             <plugins>
                <plugin>
