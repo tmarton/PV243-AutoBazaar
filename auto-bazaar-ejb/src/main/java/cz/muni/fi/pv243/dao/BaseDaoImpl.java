@@ -17,15 +17,17 @@ import java.util.List;
 
 /**
  * Created by tmarton.
+ * @param <T>
+ * @param <ID>
  */
 @Named(value = "baseDao")
-@Stateless
+//@Stateless
 //@Dependent
 //@Transactional
 public class BaseDaoImpl<T, ID extends Serializable> implements BaseDao<T,ID> {
 
     @Inject
-    private EntityManager entityManager;
+    protected EntityManager entityManager;
 
     protected Class<T> persistentClass;
 
@@ -52,16 +54,25 @@ public class BaseDaoImpl<T, ID extends Serializable> implements BaseDao<T,ID> {
 
     @Override
     public void removeAll() {
+        if (persistentClass == null)
+            throw new IllegalArgumentException("persistentClass must be set");
+        
         entityManager.createQuery("DELETE FROM " + persistentClass.getName()).executeUpdate();
     }
 
     @Override
     public List<T> getAll(){
+        if (persistentClass == null)
+            throw new IllegalArgumentException("persistentClass must be set");
+        
        return entityManager.createQuery("FROM " + persistentClass.getName()).<T>getResultList();
     }
 
     @Override
     public List<T> getAllOrdered(String column, boolean ascending){
+        if (persistentClass == null)
+            throw new IllegalArgumentException("persistentClass must be set");
+        
         Order order;
         if (ascending) {
             order = Order.asc(column);
@@ -74,6 +85,7 @@ public class BaseDaoImpl<T, ID extends Serializable> implements BaseDao<T,ID> {
         return d.getExecutableCriteria(entityManager.unwrap(Session.class)).list();
     }
 
+    @Override
     public Class<T> getPersistentClass() {
         if(persistentClass == null) {
             persistentClass = (Class<T>)((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
@@ -81,6 +93,7 @@ public class BaseDaoImpl<T, ID extends Serializable> implements BaseDao<T,ID> {
         return persistentClass;
     }
 
+    @Override
     public void setPersistentClass(Class<T> persistentClass) {
         this.persistentClass = persistentClass;
     }
