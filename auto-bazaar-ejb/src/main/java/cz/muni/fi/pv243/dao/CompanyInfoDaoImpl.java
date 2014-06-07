@@ -4,7 +4,7 @@ import cz.muni.fi.pv243.model.AdvertisingAccount;
 import cz.muni.fi.pv243.model.CompanyInfo;
 import javax.ejb.Stateless;
 
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  * Created by tmarton.
@@ -14,8 +14,11 @@ public class CompanyInfoDaoImpl extends BaseDaoImpl<CompanyInfo, Long> implement
 
     @Override
     public CompanyInfo getCompanyInfoByAdvertisingAccount(AdvertisingAccount company) {
-        Query query = entityManager.createQuery("select aa.companyInfo From " + AdvertisingAccount.class.getName() + " aa where aa.id = :id");
+        if (company == null || company.getId() == null)
+            throw new IllegalArgumentException();
+        
+        TypedQuery<CompanyInfo> query = entityManager.createNamedQuery("CompanyInfo.getByAccount", CompanyInfo.class);
         query.setParameter("id", company.getId());
-        return (CompanyInfo) query.getSingleResult();
+        return query.getSingleResult();
     }
 }

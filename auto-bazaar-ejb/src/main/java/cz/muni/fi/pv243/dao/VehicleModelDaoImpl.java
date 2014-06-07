@@ -3,9 +3,7 @@ package cz.muni.fi.pv243.dao;
 import cz.muni.fi.pv243.model.VehicleBrand;
 import cz.muni.fi.pv243.model.VehicleModel;
 
-import javax.persistence.Query;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.TypedQuery;

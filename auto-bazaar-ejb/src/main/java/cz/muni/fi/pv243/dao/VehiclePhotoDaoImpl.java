@@ -1,11 +1,12 @@
 package cz.muni.fi.pv243.dao;
 
 import cz.muni.fi.pv243.model.Advertisement;
+import cz.muni.fi.pv243.model.VehicleModel;
 import cz.muni.fi.pv243.model.VehiclePhoto;
 
-import javax.persistence.Query;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.TypedQuery;
 
 /**
  * Created by tmarton.
@@ -15,8 +16,11 @@ public class VehiclePhotoDaoImpl extends BaseDaoImpl<VehiclePhoto, Long> impleme
 
     @Override
     public List<VehiclePhoto> getAllVehiclePhotosByAdvertisement(Advertisement advert) {
-        Query query = entityManager.createQuery("select a.vehiclePhotos From " + Advertisement.class.getName() + " a where a.id = :id");
+        if (advert == null || advert.getId() == null)
+            throw new IllegalArgumentException();
+        
+        TypedQuery<VehiclePhoto> query = entityManager.createNamedQuery("VehiclePhoto.getByAdvertisement", VehiclePhoto.class);
         query.setParameter("id", advert.getId());
-        return (List<VehiclePhoto>) query.getResultList();
+        return query.getResultList();
     }
 }

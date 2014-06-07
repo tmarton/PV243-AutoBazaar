@@ -4,8 +4,8 @@ import cz.muni.fi.pv243.model.AdvertisingAccount;
 import cz.muni.fi.pv243.model.Member;
 
 import javax.ejb.Stateless;
-import javax.persistence.Query;
 import java.util.List;
+import javax.persistence.TypedQuery;
 
 /**
  * Created by tmarton.
@@ -15,8 +15,11 @@ public class MemberDaoImpl extends  BaseDaoImpl<Member, Long> implements MemberD
 
     @Override
     public List<Member> getMembersByAdvertisingAccount(AdvertisingAccount company) {
-        Query query = entityManager.createQuery("select cm.member From " + AdvertisingAccount.class.getName() + " aa join fetch aa.connectedMembers cm where aa.id = :id");
+        if (company == null || company.getId() == null)
+            throw new IllegalArgumentException();
+        
+        TypedQuery<Member> query = entityManager.createNamedQuery("Member.getByAccount", Member.class);
         query.setParameter("id", company.getId());
-        return (List<Member>) query.getResultList();
+        return query.getResultList();
     }
 }

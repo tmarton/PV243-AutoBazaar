@@ -3,9 +3,9 @@ package cz.muni.fi.pv243.dao;
 import cz.muni.fi.pv243.model.Advertisement;
 import cz.muni.fi.pv243.model.AdvertisingAccount;
 
-import javax.persistence.Query;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.TypedQuery;
 
 /**
  * Created by tmarton.
@@ -13,9 +13,12 @@ import javax.ejb.Stateless;
 @Stateless
 public class AdvertisementDaoImpl extends BaseDaoImpl<Advertisement, Long> implements AdvertisementDao {
 
-    public List<Advertisement> getAdvertisementsByAdvertisingAccount( AdvertisingAccount advertisingAccount){
-        Query query = entityManager.createQuery("From " + Advertisement.class.getName() + " a where a.advertisingAccount.id = :id");
+    public List<Advertisement> getAdvertisementsByAdvertisingAccount(AdvertisingAccount advertisingAccount) {
+        if (advertisingAccount == null || advertisingAccount.getId() == null)
+            throw new IllegalArgumentException();
+        
+        TypedQuery<Advertisement> query = entityManager.createNamedQuery("Advertisement.getByAccount", Advertisement.class);
         query.setParameter("id", advertisingAccount.getId());
-        return (List<Advertisement>) query.getResultList();
+        return query.getResultList();
     }
 }

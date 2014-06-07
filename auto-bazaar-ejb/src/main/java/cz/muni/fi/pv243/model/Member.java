@@ -12,6 +12,9 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "Member.getByAccount", query = "SELECT m FROM Member m JOIN m.advertisingAccounts am WHERE am.id = :id")
+})
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 // TODO: The entity table name is a reserved JPQL keyword
 public class Member implements Serializable {

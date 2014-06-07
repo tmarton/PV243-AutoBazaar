@@ -14,6 +14,9 @@ import javax.validation.constraints.NotNull;
  * @author dubrouski
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "VehiclePhoto.getByAdvertisement", query = "SELECT p FROM VehiclePhoto p WHERE p.advertisement.id = :id")
+})
 public class VehiclePhoto implements Serializable {
 	
 	private static final long serialVersionUID = 8L;

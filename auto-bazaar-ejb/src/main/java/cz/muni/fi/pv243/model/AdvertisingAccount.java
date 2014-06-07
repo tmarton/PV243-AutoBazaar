@@ -11,6 +11,9 @@ import javax.persistence.*;
  *
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "CompanyInfo.getByAccount", query = "SELECT aa.companyInfo FROM AdvertisingAccount aa WHERE aa.id = :id")
+})        
 public class AdvertisingAccount implements Serializable {
 
 	private static final long serialVersionUID = 2L;
