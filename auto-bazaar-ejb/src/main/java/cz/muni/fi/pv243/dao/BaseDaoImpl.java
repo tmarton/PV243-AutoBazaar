@@ -4,7 +4,6 @@ import org.hibernate.Session;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
 
-import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
@@ -14,6 +13,8 @@ import java.util.List;
 
 /**
  * Created by tmarton.
+ * @param <T> Entity type
+ * @param <ID> Entity id type
  */
 @Named(value = "baseDao")
 public class BaseDaoImpl<T, ID extends Serializable> implements BaseDao<T,ID> {
@@ -25,7 +26,7 @@ public class BaseDaoImpl<T, ID extends Serializable> implements BaseDao<T,ID> {
 
     @Override
     public T getByID(ID id) {
-        return entityManager.find(persistentClass,id);
+        return entityManager.find(getPersistentClass(), id);
     }
 
     @Override
@@ -46,25 +47,16 @@ public class BaseDaoImpl<T, ID extends Serializable> implements BaseDao<T,ID> {
 
     @Override
     public void removeAll() {
-        if (persistentClass == null)
-            throw new IllegalArgumentException("persistentClass must be set");
-        
-        entityManager.createQuery("DELETE FROM " + persistentClass.getName()).executeUpdate();
+        entityManager.createQuery("DELETE FROM " + getPersistentClass().getName()).executeUpdate();
     }
 
     @Override
     public List<T> getAll(){
-        if (persistentClass == null)
-            throw new IllegalArgumentException("persistentClass must be set");
-        
-       return entityManager.createQuery("FROM " + persistentClass.getName()).<T>getResultList();
+       return entityManager.createQuery("FROM " + getPersistentClass().getName()).<T>getResultList();
     }
 
     @Override
     public List<T> getAllOrdered(String column, boolean ascending){
-        if (persistentClass == null)
-            throw new IllegalArgumentException("persistentClass must be set");
-        
         Order order;
         if (ascending) {
             order = Order.asc(column);
@@ -73,17 +65,20 @@ public class BaseDaoImpl<T, ID extends Serializable> implements BaseDao<T,ID> {
         }
         order = order.ignoreCase();
 
-        DetachedCriteria d = DetachedCriteria.forClass(persistentClass).addOrder(order);
+        DetachedCriteria d = DetachedCriteria.forClass(getPersistentClass()).addOrder(order);
         return d.getExecutableCriteria(entityManager.unwrap(Session.class)).list();
     }
 
+    @Override
     public Class<T> getPersistentClass() {
-        if(persistentClass == null) {
+        if (persistentClass == null) {
             persistentClass = (Class<T>)((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
         }
         return persistentClass;
     }
 
+    @Override
+    @Deprecated
     public void setPersistentClass(Class<T> persistentClass) {
         this.persistentClass = persistentClass;
     }
