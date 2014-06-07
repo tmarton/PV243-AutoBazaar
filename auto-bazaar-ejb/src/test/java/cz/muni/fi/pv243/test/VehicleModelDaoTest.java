@@ -204,17 +204,6 @@ public class VehicleModelDaoTest {
     @Test
     public void deleteNonExistingVehicleModel(){
         VehicleModel v = prepareVehicle();
-        v.setId(1l);
-        
-        dao.removeAll();
-        try{
-            dao.remove(v);
-            fail("removing entity not saved to db");
-        }catch(Exception ex){
-            // ok
-        }        
-        
-        v = prepareVehicle();
         
         dao.save(v);
 
