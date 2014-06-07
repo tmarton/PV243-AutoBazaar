@@ -5,10 +5,12 @@ import cz.muni.fi.pv243.model.AdvertisingAccount;
 
 import javax.persistence.Query;
 import java.util.List;
+import javax.ejb.Stateless;
 
 /**
  * Created by tmarton.
  */
+@Stateless
 public class AdvertisementDaoImpl extends BaseDaoImpl<Advertisement, Long> implements AdvertisementDao {
 
     public List<Advertisement> getAdvertisementsByAdvertisingAccount( AdvertisingAccount advertisingAccount){

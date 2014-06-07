@@ -13,6 +13,7 @@ import javax.persistence.TypedQuery;
 /**
  * Created by tmarton.
  */
+@Stateless
 public class VehicleModelDaoImpl extends BaseDaoImpl<VehicleModel, Long> implements VehicleModelDao, Serializable {
 
     @Override

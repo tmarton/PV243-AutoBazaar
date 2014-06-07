@@ -5,10 +5,12 @@ import cz.muni.fi.pv243.model.VehiclePhoto;
 
 import javax.persistence.Query;
 import java.util.List;
+import javax.ejb.Stateless;
 
 /**
  * Created by tmarton.
  */
+@Stateless
 public class VehiclePhotoDaoImpl extends BaseDaoImpl<VehiclePhoto, Long> implements VehiclePhotoDao {
 
     @Override

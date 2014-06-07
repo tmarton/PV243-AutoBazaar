@@ -16,7 +16,6 @@ import java.util.List;
  * Created by tmarton.
  */
 @Named(value = "baseDao")
-@Stateless
 public class BaseDaoImpl<T, ID extends Serializable> implements BaseDao<T,ID> {
 
     @Inject

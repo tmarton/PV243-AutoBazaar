@@ -2,12 +2,14 @@ package cz.muni.fi.pv243.dao;
 
 import cz.muni.fi.pv243.model.AdvertisingAccount;
 import cz.muni.fi.pv243.model.CompanyInfo;
+import javax.ejb.Stateless;
 
 import javax.persistence.Query;
 
 /**
  * Created by tmarton.
  */
+@Stateless
 public class CompanyInfoDaoImpl extends BaseDaoImpl<CompanyInfo, Long> implements CompanyInfoDao {
 
     @Override
