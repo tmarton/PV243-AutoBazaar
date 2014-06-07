@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
 
 import cz.muni.fi.pv243.enums.FuelType;
 import cz.muni.fi.pv243.enums.VehicleBodyType;
+import java.util.Objects;
 import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
 import org.joda.time.DateTime;
@@ -23,7 +24,9 @@ import org.joda.time.contrib.hibernate.PersistentDateTime;
 @NamedQueries({
     @NamedQuery(name = "Advertisement.getByAccount", query = "SELECT a FROM Advertisement a WHERE a.advertisingAccount.id = :id")
 })
-@TypeDefs({ @TypeDef(name = "jodaDateTime", typeClass = PersistentDateTime.class) })
+@TypeDefs({ 
+    @TypeDef(name = "jodaDateTime", typeClass = PersistentDateTime.class, defaultForType = DateTime.class)
+})
 public class Advertisement implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -36,6 +39,7 @@ public class Advertisement implements Serializable {
     @JoinColumn(name = "id_advertising_account")
 	private AdvertisingAccount advertisingAccount;
 	
+    @NotNull
 	@Column(name = "creation_date")
 	private DateTime creationDate;
 	
@@ -49,7 +53,7 @@ public class Advertisement implements Serializable {
 	
 	@NotNull
 	@Column(name="production_date")
-	private Date productionDate;
+	private DateTime productionDate;
 	
 	@NotNull
 	@Column(name="engine_displacement")
@@ -126,10 +130,10 @@ public class Advertisement implements Serializable {
 	public void setModel(VehicleModel model) {
 		this.model = model;
 	}
-	public Date getProductionDate() {
+	public DateTime getProductionDate() {
 		return productionDate;
 	}
-	public void setProductionDate(Date productionDate) {
+	public void setProductionDate(DateTime productionDate) {
 		this.productionDate = productionDate;
 	}
 	public int getEngineDisplacement() {
@@ -144,6 +148,85 @@ public class Advertisement implements Serializable {
 	public void setAdvertisingAccount(AdvertisingAccount company) {
 		this.advertisingAccount = company;
 	}
+
+    public List<VehiclePhoto> getVehiclePhotos() {
+        return vehiclePhotos;
+    }
+
+    public void setVehiclePhotos(List<VehiclePhoto> vehiclePhotos) {
+        this.vehiclePhotos = vehiclePhotos;
+    }
 	
-	
+    public void addVehiclePhoto(VehiclePhoto vehiclePhoto) {
+        vehiclePhotos.add(vehiclePhoto);
+    }	
+
+    @Override
+    public String toString() {
+        return "Advertisement{" + "id=" + id + ", creationDate=" + creationDate + ", brand=" + brand + ", model=" + model + ", productionDate=" + productionDate + ", engineDisplacement=" + engineDisplacement + ", fuelType=" + fuelType + ", bodyType=" + bodyType + ", description=" + description + ", vehiclePhotos=" + vehiclePhotos + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 89 * hash + Objects.hashCode(this.id);
+        hash = 89 * hash + Objects.hashCode(this.advertisingAccount);
+        hash = 89 * hash + Objects.hashCode(this.creationDate);
+        hash = 89 * hash + Objects.hashCode(this.brand);
+        hash = 89 * hash + Objects.hashCode(this.model);
+        hash = 89 * hash + Objects.hashCode(this.productionDate);
+        hash = 89 * hash + this.engineDisplacement;
+        hash = 89 * hash + Objects.hashCode(this.fuelType);
+        hash = 89 * hash + Objects.hashCode(this.bodyType);
+        hash = 89 * hash + Objects.hashCode(this.description);
+        hash = 89 * hash + Objects.hashCode(this.vehiclePhotos);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Advertisement other = (Advertisement) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.advertisingAccount, other.advertisingAccount)) {
+            return false;
+        }
+        if (!Objects.equals(this.creationDate, other.creationDate)) {
+            return false;
+        }
+        if (!Objects.equals(this.brand, other.brand)) {
+            return false;
+        }
+        if (!Objects.equals(this.model, other.model)) {
+            return false;
+        }
+        if (!Objects.equals(this.productionDate, other.productionDate)) {
+            return false;
+        }
+        if (this.engineDisplacement != other.engineDisplacement) {
+            return false;
+        }
+        if (this.fuelType != other.fuelType) {
+            return false;
+        }
+        if (this.bodyType != other.bodyType) {
+            return false;
+        }
+        if (!Objects.equals(this.description, other.description)) {
+            return false;
+        }
+        if (!Objects.equals(this.vehiclePhotos, other.vehiclePhotos)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 }

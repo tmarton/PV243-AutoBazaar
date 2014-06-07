@@ -16,6 +16,7 @@ public interface VehiclePhotoDao extends BaseDao<VehiclePhoto, Long>{
      * Returns all photos associated with given advertisement.
      *
      * @param advert
+     * @return list of photos
      *
      */
 	public List<VehiclePhoto> getAllVehiclePhotosByAdvertisement(Advertisement advert);

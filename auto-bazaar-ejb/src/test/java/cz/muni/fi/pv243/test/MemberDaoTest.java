@@ -31,7 +31,7 @@ public class MemberDaoTest {
    @Deployment
    public static Archive<?> createTestArchive() {
 
-       return ShrinkWrap.create(WebArchive.class, "test.war")
+       return ShrinkWrap.create(WebArchive.class, "test_member.war")
             .addPackage("cz.muni.fi.pv243.model")
             .addPackage("cz.muni.fi.pv243.enums")
             .addPackage("cz.muni.fi.pv243.dao")

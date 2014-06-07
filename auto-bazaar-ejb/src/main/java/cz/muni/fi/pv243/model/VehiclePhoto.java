@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.lang.Long;
 import java.lang.String;
 import java.net.URL;
+import java.util.Objects;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -38,6 +39,7 @@ public class VehiclePhoto implements Serializable {
 	public VehiclePhoto() {
 		super();
 	}   
+    
 	public Long getId() {
 		return this.id;
 	}
@@ -45,6 +47,7 @@ public class VehiclePhoto implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}   
+    
 	public String getComment() {
 		return this.comment;
 	}
@@ -52,6 +55,7 @@ public class VehiclePhoto implements Serializable {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}   
+    
 	public URL getUrl() {
 		return this.url;
 	}
@@ -59,5 +63,49 @@ public class VehiclePhoto implements Serializable {
 	public void setUrl(URL url) {
 		this.url = url;
 	}
+
+    public Advertisement getAdvertisement() {
+        return advertisement;
+    }
+    
+    @Override
+    public String toString() {
+        return "VehiclePhoto{" + "id=" + id + ", comment=" + comment + ", url=" + url + ", advertisement=" + advertisement + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 89 * hash + Objects.hashCode(this.id);
+        hash = 89 * hash + Objects.hashCode(this.comment);
+        hash = 89 * hash + Objects.hashCode(this.url);
+        hash = 89 * hash + Objects.hashCode(this.advertisement);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final VehiclePhoto other = (VehiclePhoto) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.comment, other.comment)) {
+            return false;
+        }
+        if (!Objects.equals(this.url, other.url)) {
+            return false;
+        }
+        if (!Objects.equals(this.advertisement, other.advertisement)) {
+            return false;
+        }
+        return true;
+    }
    
+    
 }
