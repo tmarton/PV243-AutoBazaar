@@ -30,6 +30,7 @@ public class Advertisement implements Serializable {
 	private long id;
 	
 	@ManyToOne
+    @JoinColumn(name = "id_advertising_account")
 	private AdvertisingAccount advertisingAccount;
 	
 	@Column(name = "creation_date")

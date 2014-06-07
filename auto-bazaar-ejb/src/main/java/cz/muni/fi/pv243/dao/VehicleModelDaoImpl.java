@@ -3,6 +3,7 @@ package cz.muni.fi.pv243.dao;
 import cz.muni.fi.pv243.model.VehicleBrand;
 import cz.muni.fi.pv243.model.VehicleModel;
 
+import javax.persistence.Query;
 import java.io.Serializable;
 import java.util.List;
 
@@ -13,6 +14,8 @@ public class VehicleModelDaoImpl extends BaseDaoImpl<VehicleModel, Long> impleme
 
     @Override
     public List<VehicleModel> getAllVehicleModelsByBrand(VehicleBrand brand) {
-        return null;
+        Query query = entityManager.createQuery("select vm.member From " + VehicleModel.class.getName() + " vm where vm.brand.id = :id");
+        query.setParameter("id", brand.getId());
+        return (List<VehicleModel>) query.getResultList();
     }
 }

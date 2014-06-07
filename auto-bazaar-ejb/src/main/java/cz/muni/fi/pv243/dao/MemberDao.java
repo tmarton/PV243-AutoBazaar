@@ -18,6 +18,6 @@ public interface MemberDao extends BaseDao<Member, Long> {
      * @param company
      *
      */
-	public List<Member> getMembersBySellingCompany(AdvertisingAccount company);
+	public List<Member> getMembersByAdvertisingAccount(AdvertisingAccount company);
 	
 }

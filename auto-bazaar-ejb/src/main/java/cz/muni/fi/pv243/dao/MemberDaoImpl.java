@@ -4,7 +4,7 @@ import cz.muni.fi.pv243.model.AdvertisingAccount;
 import cz.muni.fi.pv243.model.Member;
 
 import javax.ejb.Stateless;
-import javax.enterprise.context.ApplicationScoped;
+import javax.persistence.Query;
 import java.util.List;
 
 /**
@@ -18,7 +18,9 @@ public class MemberDaoImpl extends  BaseDaoImpl<Member, Long> implements MemberD
     }
 
     @Override
-    public List<Member> getMembersBySellingCompany(AdvertisingAccount company) {
-        return null;
+    public List<Member> getMembersByAdvertisingAccount(AdvertisingAccount company) {
+        Query query = entityManager.createQuery("select cm.member From " + AdvertisingAccount.class.getName() + " aa join fetch aa.connectedMembers cm where aa.id = :id");
+        query.setParameter("id", company.getId());
+        return (List<Member>) query.getResultList();
     }
 }

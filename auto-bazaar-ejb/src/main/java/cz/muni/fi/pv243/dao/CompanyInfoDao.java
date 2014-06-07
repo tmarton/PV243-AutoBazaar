@@ -16,7 +16,7 @@ public interface CompanyInfoDao  extends BaseDao<CompanyInfo, Long> {
      * @param company company that returned info belongs to.
      *
      */
-	public CompanyInfo getCompanyInfoBySellingCompany(AdvertisingAccount company);
+	public CompanyInfo getCompanyInfoByAdvertisingAccount(AdvertisingAccount company);
 
 
 	

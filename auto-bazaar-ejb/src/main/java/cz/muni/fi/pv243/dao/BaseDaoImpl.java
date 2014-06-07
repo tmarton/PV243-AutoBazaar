@@ -1,15 +1,12 @@
 package cz.muni.fi.pv243.dao;
 
-import org.hibernate.Session;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Order;
-
 import javax.ejb.Stateless;
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
@@ -20,12 +17,11 @@ import java.util.List;
  */
 @Named(value = "baseDao")
 @Stateless
-//@Dependent
-//@Transactional
+@Transactional
 public class BaseDaoImpl<T, ID extends Serializable> implements BaseDao<T,ID> {
 
     @Inject
-    private EntityManager entityManager;
+    protected EntityManager entityManager;
 
     protected Class<T> persistentClass;
 
@@ -62,16 +58,11 @@ public class BaseDaoImpl<T, ID extends Serializable> implements BaseDao<T,ID> {
 
     @Override
     public List<T> getAllOrdered(String column, boolean ascending){
-        Order order;
-        if (ascending) {
-            order = Order.asc(column);
-        } else {
-            order = Order.desc(column);
-        }
-        order = order.ignoreCase();
-
-        DetachedCriteria d = DetachedCriteria.forClass(persistentClass).addOrder(order);
-        return d.getExecutableCriteria(entityManager.unwrap(Session.class)).list();
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<T> criteria = cb.createQuery(persistentClass);
+        Root<T> root = criteria.from(persistentClass);
+        criteria.orderBy(ascending ?  cb.asc(root.get(column)) : cb.desc(root.get(column)) );
+        return entityManager.createQuery(criteria).getResultList();
     }
 
     public Class<T> getPersistentClass() {
