@@ -13,6 +13,8 @@ import javax.persistence.*;
 @Entity
 public class MemberAdvertisingAccount implements Serializable {
 
+	private static final long serialVersionUID = 5L;
+    
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -29,8 +31,6 @@ public class MemberAdvertisingAccount implements Serializable {
     //TODO this should be replaced with authority entity according to java ee security
 	private String description;
 	
-	private static final long serialVersionUID = 1L;
-
 	public MemberAdvertisingAccount() {
 		super();
 	}   

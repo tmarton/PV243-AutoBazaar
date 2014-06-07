@@ -20,7 +20,7 @@ import org.joda.time.contrib.hibernate.PersistentDateTime;
  * @author dubrouski
  */
 @Entity
-@TypeDefs( { @TypeDef(name = "jodaDateTime", typeClass = PersistentDateTime.class) })
+@TypeDefs({ @TypeDef(name = "jodaDateTime", typeClass = PersistentDateTime.class) })
 public class Advertisement implements Serializable {
 
 	private static final long serialVersionUID = 1L;

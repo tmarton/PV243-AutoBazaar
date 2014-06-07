@@ -13,9 +13,10 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+// TODO: The entity table name is a reserved JPQL keyword
 public class Member implements Serializable {
-	/** Default value included to remove warning. Remove or modify at will. **/
-	private static final long serialVersionUID = 1L;
+
+    private static final long serialVersionUID = 4L;
 
 	@Id
 	@GeneratedValue

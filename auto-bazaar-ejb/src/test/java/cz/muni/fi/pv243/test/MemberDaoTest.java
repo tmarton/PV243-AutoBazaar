@@ -26,7 +26,7 @@ import cz.muni.fi.pv243.model.Member;
 import static org.junit.Assert.*;
 
 @RunWith(Arquillian.class)
-public class MemberRegistrationTest {
+public class MemberDaoTest {
 
    @Deployment
    public static Archive<?> createTestArchive() {
@@ -41,10 +41,6 @@ public class MemberRegistrationTest {
             .addAsResource("META-INF/persistence.xml", ArchivePaths.create("META-INF/persistence.xml"))
             .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
    }
-
-
-    @Inject
-    Logger log;
 
     @Inject
     private MemberDao memberDao;

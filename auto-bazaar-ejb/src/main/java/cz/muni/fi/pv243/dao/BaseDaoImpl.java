@@ -1,6 +1,12 @@
 package cz.muni.fi.pv243.dao;
 
+import org.hibernate.Session;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Order;
+
 import javax.ejb.Stateless;
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
@@ -17,7 +23,8 @@ import java.util.List;
  */
 @Named(value = "baseDao")
 @Stateless
-@Transactional
+//@Dependent
+//@Transactional
 public class BaseDaoImpl<T, ID extends Serializable> implements BaseDao<T,ID> {
 
     @Inject
@@ -48,21 +55,35 @@ public class BaseDaoImpl<T, ID extends Serializable> implements BaseDao<T,ID> {
 
     @Override
     public void removeAll() {
+        if (persistentClass == null)
+            throw new IllegalArgumentException("persistentClass must be set");
+        
         entityManager.createQuery("DELETE FROM " + persistentClass.getName()).executeUpdate();
     }
 
     @Override
     public List<T> getAll(){
+        if (persistentClass == null)
+            throw new IllegalArgumentException("persistentClass must be set");
+        
        return entityManager.createQuery("FROM " + persistentClass.getName()).<T>getResultList();
     }
 
     @Override
     public List<T> getAllOrdered(String column, boolean ascending){
-        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaQuery<T> criteria = cb.createQuery(persistentClass);
-        Root<T> root = criteria.from(persistentClass);
-        criteria.orderBy(ascending ?  cb.asc(root.get(column)) : cb.desc(root.get(column)) );
-        return entityManager.createQuery(criteria).getResultList();
+        if (persistentClass == null)
+            throw new IllegalArgumentException("persistentClass must be set");
+        
+        Order order;
+        if (ascending) {
+            order = Order.asc(column);
+        } else {
+            order = Order.desc(column);
+        }
+        order = order.ignoreCase();
+
+        DetachedCriteria d = DetachedCriteria.forClass(persistentClass).addOrder(order);
+        return d.getExecutableCriteria(entityManager.unwrap(Session.class)).list();
     }
 
     public Class<T> getPersistentClass() {
