@@ -10,10 +10,8 @@ import javax.validation.constraints.NotNull;
 import cz.muni.fi.pv243.enums.FuelType;
 import cz.muni.fi.pv243.enums.VehicleBodyType;
 import java.util.Objects;
-import org.hibernate.annotations.TypeDef;
-import org.hibernate.annotations.TypeDefs;
+import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
-import org.joda.time.contrib.hibernate.PersistentDateTime;
 
 /**
  * Entity implementation class for Entity: Advertisement
@@ -23,9 +21,6 @@ import org.joda.time.contrib.hibernate.PersistentDateTime;
 @Entity
 @NamedQueries({
     @NamedQuery(name = "Advertisement.getByAccount", query = "SELECT a FROM Advertisement a WHERE a.advertisingAccount.id = :id")
-})
-@TypeDefs({ 
-    @TypeDef(name = "jodaDateTime", typeClass = PersistentDateTime.class, defaultForType = DateTime.class)
 })
 public class Advertisement implements Serializable {
 
@@ -41,6 +36,7 @@ public class Advertisement implements Serializable {
 	
     @NotNull
 	@Column(name = "creation_date")
+    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	private DateTime creationDate;
 	
 	@NotNull
@@ -53,6 +49,7 @@ public class Advertisement implements Serializable {
 	
 	@NotNull
 	@Column(name="production_date")
+    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	private DateTime productionDate;
 	
 	@NotNull
