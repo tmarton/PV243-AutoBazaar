@@ -13,10 +13,6 @@ import java.util.List;
 @Stateless
 public class MemberDaoImpl extends  BaseDaoImpl<Member, Long> implements MemberDao {
 
-    public MemberDaoImpl() {
-        persistentClass = Member.class;
-    }
-
     @Override
     public List<Member> getMembersByAdvertisingAccount(AdvertisingAccount company) {
         Query query = entityManager.createQuery("select cm.member From " + AdvertisingAccount.class.getName() + " aa join fetch aa.connectedMembers cm where aa.id = :id");

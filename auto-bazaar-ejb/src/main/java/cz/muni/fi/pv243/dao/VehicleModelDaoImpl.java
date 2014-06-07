@@ -17,20 +17,10 @@ public class VehicleModelDaoImpl extends BaseDaoImpl<VehicleModel, Long> impleme
 
     @Override
     public List<VehicleModel> getAllVehicleModelsByBrand(VehicleBrand brand) {
-        Query query = entityManager.createQuery("select vm.member From " + VehicleModel.class.getName() + " vm where vm.brand.id = :id");
-        query.setParameter("id", brand.getId());
-        return (List<VehicleModel>) query.getResultList();
         if (brand == null || brand.getId() == null)
             throw new IllegalArgumentException();
         
-        /*List<VehicleModel> result = new ArrayList<>();
-        for (VehicleModel v : getAll())
-            if (v.getBrand().equals(brand))
-                result.add(v);
-        
-        return result;*/
-        
-        TypedQuery<VehicleModel> query = entityManager.createNamedQuery("Vehicle.findByBrand", VehicleModel.class);
+        TypedQuery<VehicleModel> query = entityManager.createNamedQuery("VehicleModel.findByBrand", VehicleModel.class);
         query.setParameter("id", brand.getId());
         return query.getResultList();
     }

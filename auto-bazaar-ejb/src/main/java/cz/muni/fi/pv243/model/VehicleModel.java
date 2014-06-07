@@ -14,8 +14,8 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name="Vehicle.findByBrand",
-                query="SELECT m FROM VehicleModel m LEFT JOIN m.brand b WHERE b.id = :id")
+    @NamedQuery(name="VehicleModel.findByBrand",
+                query="SELECT m FROM VehicleModel m JOIN m.brand b WHERE b.id = :id")
 })
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "name"))
 public class VehicleModel implements Serializable {

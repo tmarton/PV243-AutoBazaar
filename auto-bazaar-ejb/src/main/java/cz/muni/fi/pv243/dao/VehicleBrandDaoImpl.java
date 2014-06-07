@@ -13,8 +13,6 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class VehicleBrandDaoImpl extends BaseDaoImpl<VehicleBrand, Long> implements VehicleBrandDao, Serializable {
 
-    public VehicleBrandDaoImpl() {
-        persistentClass = VehicleBrand.class;
-    }
+
 
 }
