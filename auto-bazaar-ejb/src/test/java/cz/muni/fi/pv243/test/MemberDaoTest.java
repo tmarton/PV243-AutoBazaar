@@ -157,7 +157,7 @@ public class MemberDaoTest {
     }
 
     @Test
-    public void updateEmployeeOK(){
+    public void updateMemberOK(){
         Member member = getPreparedMember();
 
         memberDao.save(member);
@@ -174,7 +174,7 @@ public class MemberDaoTest {
     }
 
     @Test
-    public void updateEmployeeFail() throws NamingException{
+    public void updateMemberFail() throws NamingException{
         Member member = new Member();
 
         try{
@@ -193,7 +193,7 @@ public class MemberDaoTest {
     }
 
     @Test
-    public void deleteEmplyeeOK(){
+    public void deleteMemberOK(){
 
         Member member = getPreparedMember();
 
@@ -205,7 +205,7 @@ public class MemberDaoTest {
     }
 
     @Test
-    public void deleteEmployeeFail() throws NamingException{
+    public void deleteMemberFail() throws NamingException{
         try{
             memberDao.remove(null);
             fail();
@@ -213,6 +213,7 @@ public class MemberDaoTest {
             // ok
         }
 
+        // merge throws exceptions due to validation
         Member member = new Member();
         try{
             memberDao.remove(member);
@@ -220,19 +221,10 @@ public class MemberDaoTest {
         }catch(Exception ex){
             //ok
         }
-
-        member.setId(new Long(11));
-        try{
-            // not in DB
-            memberDao.remove(member);
-            fail("delete entity not in DB");
-        }catch(Exception ex){
-            // ok
-        }
     }
 
     @Test
-    public void retrieveAllEmployees() throws NamingException{
+    public void retrieveAllMembers() throws NamingException{
         memberDao.removeAll();
         assertTrue(memberDao.getAll().isEmpty());
 
