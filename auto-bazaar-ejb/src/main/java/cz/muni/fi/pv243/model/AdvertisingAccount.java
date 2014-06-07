@@ -2,6 +2,7 @@ package cz.muni.fi.pv243.model;
 
 import java.io.Serializable;
 import java.lang.Long;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -31,7 +32,7 @@ public class AdvertisingAccount implements Serializable {
 	private CompanyInfo companyInfo;
 
 	@OneToMany(mappedBy = "advertisingAccount")
-	private List<MemberAdvertisingAccount> connectedMembers;
+	private List<MemberAdvertisingAccount> connectedMembers = new ArrayList<>();
 	
 	public AdvertisingAccount() {
 		super();

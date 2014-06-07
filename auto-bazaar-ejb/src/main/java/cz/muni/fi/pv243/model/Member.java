@@ -2,6 +2,7 @@ package cz.muni.fi.pv243.model;
 
 import java.util.List;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -41,7 +42,7 @@ public class Member implements Serializable {
 	private String phoneNumber;
 
 	@OneToMany(mappedBy="member", fetch = FetchType.LAZY)
-	private List<MemberAdvertisingAccount> advertisingAccounts;
+	private List<MemberAdvertisingAccount> advertisingAccounts = new ArrayList<>();
 	
 	public Long getId() {
 		return id;

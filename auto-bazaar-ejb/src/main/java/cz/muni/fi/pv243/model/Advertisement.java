@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
 
 import cz.muni.fi.pv243.enums.FuelType;
 import cz.muni.fi.pv243.enums.VehicleBodyType;
+import java.util.ArrayList;
 import java.util.Objects;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
@@ -68,7 +69,7 @@ public class Advertisement implements Serializable {
 	private String description;
 	
 	@OneToMany(mappedBy="advertisement")
-	private List<VehiclePhoto> vehiclePhotos;	
+	private List<VehiclePhoto> vehiclePhotos = new ArrayList<>();	
 	
 	public Advertisement() {
 		super();
