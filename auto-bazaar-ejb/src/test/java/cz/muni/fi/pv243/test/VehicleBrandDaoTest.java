@@ -1,9 +1,7 @@
 package cz.muni.fi.pv243.test;
 
 import cz.muni.fi.pv243.dao.VehicleBrandDao;
-import cz.muni.fi.pv243.dao.VehicleModelDao;
 import cz.muni.fi.pv243.model.VehicleBrand;
-import cz.muni.fi.pv243.model.VehicleModel;
 import java.util.*;
 import javax.inject.Inject;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -25,11 +23,11 @@ import org.junit.runner.RunWith;
  * @author Johny
  */
 @RunWith(Arquillian.class)
-public class VehicleModelDaoTest {
+public class VehicleBrandDaoTest {
     
     @Deployment
     public static Archive<?> createTestArchive() {
-        return ShrinkWrap.create(WebArchive.class, "test_vehicle_model.war")
+        return ShrinkWrap.create(WebArchive.class, "test_vehicle_brand.war")
             .addPackage("cz.muni.fi.pv243.model")
             .addPackage("cz.muni.fi.pv243.enums")
             .addPackage("cz.muni.fi.pv243.dao")
@@ -41,11 +39,9 @@ public class VehicleModelDaoTest {
     }    
     
     @Inject
-    private VehicleModelDao dao;
-    @Inject
-    private VehicleBrandDao brandDao;    
+    private VehicleBrandDao dao;    
     
-    public VehicleModelDaoTest() {
+    public VehicleBrandDaoTest() {
     }
     
     @Before
@@ -58,62 +54,62 @@ public class VehicleModelDaoTest {
     }
     
     @Test
-    public void createValidVehicleModel() {
-        VehicleModel v = prepareVehicleModel();
+    public void createValidVehicleBrand() {
+        VehicleBrand v = prepareVehicleBrand();
         assertNull(v.getId());
         
         dao.save(v);
         assertNotNull(v.getId());
         
-        VehicleModel loaded = dao.getByID(v.getId());
+        VehicleBrand loaded = dao.getByID(v.getId());
         assertTrue(v.equals(loaded));
     }
     
     @Test
-    public void createExistingVehicleModel() {
-        VehicleModel v = prepareVehicleModel();
+    public void createExistingVehicleBrand() {
+        VehicleBrand v = prepareVehicleBrand();
         assertNull(v.getId());
         
         dao.save(v);
         try {
             dao.save(v);
-            fail("saved already saved VehicleModel");
+            fail("saved already saved VehicleBrand");
         } catch (Exception e) {
             // ok
         }
         
-        v = prepareVehicleModel();
+        v = prepareVehicleBrand();
         try {
             dao.save(v);
-            fail("saved VehicleModel with non-unique name");
+            fail("saved VehicleBrand with non-unique name");
         } catch (Exception e) {
             // ok
         }        
     }    
     
     @Test
-    public void createInvalidVehicleModel() {
+    public void createInvalidVehicleBrand() {
         try {
             dao.save(null);
-            fail("saved null VehicleModel");
+            fail("saved null VehicleBrand");
         } catch (Exception e) {
             // ok
         } 
         
-        VehicleModel v = prepareVehicleModel();
+        VehicleBrand v = prepareVehicleBrand();
         v.setId(1l);
         
         try {
             dao.save(v);
-            fail("saved VehicleModel with id");
+            fail("saved VehicleBrand with id");
         } catch (Exception e) {
             // ok
         }
         
-        v = new VehicleModel();
+        v = new VehicleBrand();
         try {
             dao.save(v);
-            fail("saved VehicleModel with null name");
+            fail("saved VehicleBrand with null name");
         } catch (Exception e) {
             // ok
         }    
@@ -121,25 +117,24 @@ public class VehicleModelDaoTest {
         v.setName("");
         try {
             dao.save(v);
-            fail("saved VehicleModel with empty name");
+            fail("saved VehicleBrand with empty name");
         } catch (Exception e) {
             // ok
         }         
     }     
     
     @Test
-    public void getNullVehicleModel() {
+    public void getNullVehicleBrand() {
         try {
             dao.getByID(null);
-            fail("returned VehicleModel when searching for null");
+            fail("returned VehicleBrand when searching for null");
         } catch (Exception e) {
             // ok
         }
     }    
-    
 
     @Test
-    public void updateVehicleModel(){
+    public void updateVehicleBrand(){
         try{
             dao.update(null);
             fail("update with null");
@@ -147,7 +142,7 @@ public class VehicleModelDaoTest {
             //ok
         }
 
-        VehicleModel v = new VehicleModel();
+        VehicleBrand v = new VehicleBrand();
         try{
             dao.update(v);
             fail("update non consistent entity");
@@ -161,13 +156,13 @@ public class VehicleModelDaoTest {
         v.setName("xyz");
         dao.update(v);
 
-        VehicleModel found = dao.getByID(v.getId());
+        VehicleBrand found = dao.getByID(v.getId());
         assertTrue(v.equals(found));
         
         v.setName(null);
         try {
             dao.update(v);
-            fail("updated VehicleModel with null name");
+            fail("updated VehicleBrand with null name");
         } catch (Exception e) {
             // ok
         } 
@@ -175,14 +170,14 @@ public class VehicleModelDaoTest {
         v.setName("");
         try {
             dao.update(v);
-            fail("updated VehicleModel with empty name");
+            fail("updated VehicleBrand with empty name");
         } catch (Exception e) {
             // ok
         }         
     }
-
+    
     @Test
-    public void deleteVehicleModel(){
+    public void deleteVehicleBrand(){
         try{
             dao.remove(null);
             fail();
@@ -190,7 +185,7 @@ public class VehicleModelDaoTest {
             // ok
         }
         
-        VehicleModel v = prepareVehicleModel();
+        VehicleBrand v = prepareVehicleBrand();
         
         dao.save(v);
         
@@ -202,66 +197,27 @@ public class VehicleModelDaoTest {
     }
 
     @Test
-    public void getAllVehicleModels() {
+    public void getAllVehicleBrands() {
         assertTrue(dao.getAll().isEmpty());
 
-        VehicleModel m1 = new VehicleModel();
-        m1.setName("x");
-        VehicleModel m2 = new VehicleModel();
-        m2.setName("y");        
+        VehicleBrand m1 = new VehicleBrand();
+        m1.setName("brand1");
+        VehicleBrand m2 = new VehicleBrand();
+        m2.setName("brand2");        
 
         dao.save(m1);
         dao.save(m2);
 
-        List<VehicleModel> expected = Arrays.asList(m1, m2);
+        List<VehicleBrand> expected = Arrays.asList(m1, m2);
 
-        List<VehicleModel> actual = dao.getAll();
+        List<VehicleBrand> actual = dao.getAll();
 
         assertArrayEquals(expected.toArray(), actual.toArray());
     }    
     
-
-    @Test
-    public void testGetAllVehicleModelsByBrand() {
-        
-        try{
-            dao.getAllVehicleModelsByBrand(null);
-            fail("getting all vehicle models by null brand");
-        }catch(Exception ex){
-            // ok
-        }         
-        
-        VehicleBrand brand = new VehicleBrand();
-        brand.setName("Škoda");
-        try{
-            dao.getAllVehicleModelsByBrand(brand);
-            fail("getting all vehicle models by non-existing brand");
-        }catch(Exception ex){
-            // ok
-        }           
-        brandDao.save(brand);
-        
-        assertTrue(dao.getAllVehicleModelsByBrand(brand).isEmpty());
-        
-        VehicleModel m = prepareVehicleModel();
-        m.setBrand(brand);
-        dao.save(m);
-        
-        VehicleModel m2 = new VehicleModel();
-        m2.setName("Superb");
-        dao.save(m2);        
-        
-        List<VehicleModel> res = dao.getAllVehicleModelsByBrand(brand);
-        assertTrue(res.size() == 1);
-        
-        assertEquals(m, res.get(0));
-        
-        assertEquals(m.getBrand(), res.get(0).getBrand());
-    }
-    
-    private VehicleModel prepareVehicleModel() {
-        VehicleModel v = new VehicleModel();
-        v.setName("Rapid");
+    private VehicleBrand prepareVehicleBrand() {
+        VehicleBrand v = new VehicleBrand();
+        v.setName("Škoda");
         return v;
     }
     
