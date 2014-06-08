@@ -67,6 +67,10 @@ public class VehiclePhoto implements Serializable {
     public Advertisement getAdvertisement() {
         return advertisement;
     }
+
+    public void setAdvertisement(Advertisement advertisement) {
+        this.advertisement = advertisement;
+    }
     
     @Override
     public String toString() {

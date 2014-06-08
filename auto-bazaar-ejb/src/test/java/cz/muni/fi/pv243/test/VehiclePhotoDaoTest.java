@@ -15,6 +15,14 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.HeuristicMixedException;
+import javax.transaction.HeuristicRollbackException;
+import javax.transaction.NotSupportedException;
+import javax.transaction.RollbackException;
+import javax.transaction.SystemException;
+import javax.transaction.UserTransaction;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
@@ -57,7 +65,12 @@ public class VehiclePhotoDaoTest {
     @Inject
     private VehicleModelDao modelDao; 
     @Inject
-    private VehicleBrandDao brandDao;     
+    private VehicleBrandDao brandDao;  
+    
+    @PersistenceContext
+    private EntityManager em;
+    @Inject
+    private UserTransaction utx;
 
     public VehiclePhotoDaoTest() {
     }
@@ -241,7 +254,7 @@ public class VehiclePhotoDaoTest {
     }
 
     @Test
-    public void testGetAllVehiclePhotosByAdvertisement() {
+    public void testGetAllVehiclePhotosByAdvertisement() throws NotSupportedException, SystemException, RollbackException, HeuristicMixedException, HeuristicRollbackException {
 
         try {
             dao.getAllVehiclePhotosByAdvertisement(null);
@@ -257,7 +270,12 @@ public class VehiclePhotoDaoTest {
             fail("getting all vehicle photos by non-existing advert");
         }catch(Exception ex){
             // ok
-        }           
+        }    
+        
+        // lazy fetched entities (from join collection) need active transaction
+        utx.begin();
+        em.joinTransaction();  
+        
         advertDao.save(advert);
 
         assertTrue(dao.getAllVehiclePhotosByAdvertisement(advert).isEmpty());
@@ -271,6 +289,7 @@ public class VehiclePhotoDaoTest {
         dao.save(p2);  
         
         advert.addVehiclePhoto(p);
+        p.setAdvertisement(advert);
 
         List<VehiclePhoto> res = dao.getAllVehiclePhotosByAdvertisement(advert);
         assertTrue(res.size() == 1);
@@ -278,6 +297,8 @@ public class VehiclePhotoDaoTest {
         assertEquals(p, res.get(0));
 
         assertEquals(p.getAdvertisement(), res.get(0).getAdvertisement());
+        
+        utx.commit();
     }
 
     private VehiclePhoto prepareVehiclePhoto() {

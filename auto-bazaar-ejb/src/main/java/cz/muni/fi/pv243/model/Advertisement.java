@@ -161,7 +161,7 @@ public class Advertisement implements Serializable {
 
     @Override
     public String toString() {
-        return "Advertisement{" + "id=" + id + ", creationDate=" + creationDate + ", brand=" + brand + ", model=" + model + ", productionDate=" + productionDate + ", engineDisplacement=" + engineDisplacement + ", fuelType=" + fuelType + ", bodyType=" + bodyType + ", description=" + description + ", vehiclePhotos=" + vehiclePhotos + '}';
+        return "Advertisement{" + "id=" + id + ", creationDate=" + creationDate + ", brand=" + brand + ", model=" + model + ", productionDate=" + productionDate + ", engineDisplacement=" + engineDisplacement + ", fuelType=" + fuelType + ", bodyType=" + bodyType + ", description=" + description + ", vehiclePhotoCount=" + vehiclePhotos.size() + '}';
     }
 
     @Override
