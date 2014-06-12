@@ -1,9 +1,11 @@
 package cz.muni.fi.pv243.services;
 
 import cz.muni.fi.pv243.dao.VehicleModelDao;
+import cz.muni.fi.pv243.dto.VehicleBrandDto;
 import cz.muni.fi.pv243.dto.VehicleModelDto;
+import cz.muni.fi.pv243.model.VehicleBrand;
 import cz.muni.fi.pv243.model.VehicleModel;
-import javax.inject.Inject;
+import cz.muni.fi.pv243.services.impl.VehicleModelServiceImpl;
 import org.dozer.DozerBeanMapper;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -51,21 +53,19 @@ public class VehicleModelServiceTest {
     public VehicleModelServiceTest() {
     }
     
-    @Inject
+    //@Inject // can't set dao into proxy :/
     private VehicleModelService service;
-    //@Mock
     private VehicleModelDao dao;
     private DozerBeanMapper mapper;
     
     @Before
     public void setUp() {
+        service = new VehicleModelServiceImpl();
         dao = mock(VehicleModelDao.class);
-        //MockitoAnnotations.initMocks(this);
         service.setDao(dao);
-        if (!dao.equals(service.getDao())) // dunno why this aint workin
+        if (!dao.equals(service.getDao()))
             fail("Can't set mocked instance into service: " + dao.toString()  + "; found " + service.getDao().toString() + " instead");
         mapper = new DozerBeanMapper();
-        //service.setMapper(mapper);
     }
 
     /**
@@ -122,4 +122,14 @@ public class VehicleModelServiceTest {
         verify(dao).remove(mapper.map(dto, VehicleModel.class));         
     }
     
+    /**
+     * Test of getAllVehicleModelsByBrand method, of class VehicleModelServiceImpl.
+     * @throws java.lang.Exception
+     */
+    @Test
+    public void testGetAllVehicleModelsByBrand() throws Exception {
+        VehicleBrandDto brand = new VehicleBrandDto();
+        service.getAllVehicleModelsByBrand(brand);
+        verify(dao).getAllVehicleModelsByBrand(mapper.map(brand, VehicleBrand.class));         
+    }
 }
