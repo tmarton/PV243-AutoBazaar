@@ -88,8 +88,9 @@ public class AdvertisingAccountDaoTest {
 
 		assertNotNull(acc.getId());
 		assertEquals(adAccountDao.getAll().size(), 1);
-		assertAdvertisingAccountDeepEquals(acc,
+		assertAdvertisingAccountDeepEqualsNoMembers(acc,
 				adAccountDao.getByID(acc.getId()));
+		
 	}
 
 	@Test
@@ -153,12 +154,11 @@ public class AdvertisingAccountDaoTest {
 
 	}
 
-	private static void assertAdvertisingAccountDeepEquals(
+	private static void assertAdvertisingAccountDeepEqualsNoMembers(
 			AdvertisingAccount a1, AdvertisingAccount a2) {
 		assertEquals(a1.getIsActive(), a2.getIsActive());
 		assertCompanyInfoDeepEquals(a1.getCompanyInfo(), a2.getCompanyInfo());
-		assertMemberAdvertisingAccountDeepEquals(a1.getConnectedMembers(),
-				a2.getConnectedMembers());
+		//assertMemberAdvertisingAccountDeepEquals(a1.getConnectedMembers(), a2.getConnectedMembers());
 
 	}
 

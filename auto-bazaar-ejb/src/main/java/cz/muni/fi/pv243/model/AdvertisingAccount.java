@@ -32,7 +32,7 @@ public class AdvertisingAccount implements Serializable {
     @JoinColumn(name = "id_company_info")
 	private CompanyInfo companyInfo;
 
-	@OneToMany(mappedBy = "advertisingAccount", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy = "advertisingAccount")
 	private List<MemberAdvertisingAccount> connectedMembers = new ArrayList<>();
 	
 	public AdvertisingAccount() {
