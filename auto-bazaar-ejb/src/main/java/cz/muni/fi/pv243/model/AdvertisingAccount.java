@@ -13,7 +13,8 @@ import javax.persistence.*;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "CompanyInfo.getByAccount", query = "SELECT aa.companyInfo FROM AdvertisingAccount aa WHERE aa.id = :id")
+    @NamedQuery(name = "AdvertisingAccount.getByMember", 
+    		query = "SELECT aa.advertisingAccount FROM MemberAdvertisingAccount aa WHERE aa.member.id = :id")
 })        
 public class AdvertisingAccount implements Serializable {
 
@@ -31,7 +32,7 @@ public class AdvertisingAccount implements Serializable {
     @JoinColumn(name = "id_company_info")
 	private CompanyInfo companyInfo;
 
-	@OneToMany(mappedBy = "advertisingAccount")
+	@OneToMany(mappedBy = "advertisingAccount", fetch=FetchType.EAGER)
 	private List<MemberAdvertisingAccount> connectedMembers = new ArrayList<>();
 	
 	public AdvertisingAccount() {
