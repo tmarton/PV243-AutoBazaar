@@ -1,8 +1,7 @@
 package cz.muni.fi.pv243.model;
 
 import java.io.Serializable;
-import java.lang.Long;
-import java.lang.String;
+import java.util.Objects;
 import javax.persistence.*;
 
 /**
@@ -62,5 +61,40 @@ public class MemberAdvertisingAccount implements Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+    public AdvertisingAccount getAdvertisingAccount() {
+        return advertisingAccount;
+    }
+
+    public void setAdvertisingAccount(AdvertisingAccount advertisingAccount) {
+        this.advertisingAccount = advertisingAccount;
+    }
+
+    @Override
+    public String toString() {
+        return "MemberAdvertisingAccount{" + "id=" + id + ", member=" + member + ", advertisingAccount=" + advertisingAccount + ", description=" + description + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 47 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final MemberAdvertisingAccount other = (MemberAdvertisingAccount) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return true;
+    }
    
 }

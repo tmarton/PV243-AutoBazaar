@@ -6,6 +6,8 @@ import java.util.List;
 
 /**
  * Created by tmarton.
+ * @param <T>
+ * @param <ID>
  */
 @Local
 public interface BaseDao<T, ID extends Serializable> {

@@ -41,6 +41,14 @@ public class MemberAdvertisingAccountDto implements Serializable {
 		this.description = description;
 	}
 
+    public AdvertisingAccountDto getAdvertisingAccount() {
+        return advertisingAccount;
+    }
+
+    public void setAdvertisingAccount(AdvertisingAccountDto advertisingAccount) {
+        this.advertisingAccount = advertisingAccount;
+    }
+
     @Override
     public String toString() {
         return "MemberAdvertisingAccountDto{" + "id=" + id + ", member=" + member + ", advertisingAccount=" + advertisingAccount + ", description=" + description + '}';

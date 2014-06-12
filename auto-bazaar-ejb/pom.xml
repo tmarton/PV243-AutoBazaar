@@ -108,6 +108,12 @@
             <groupId>org.jadira.usertype</groupId>
             <artifactId>usertype.core</artifactId>
             <version>3.2.0.GA</version>
+        </dependency> 
+        
+        <dependency>
+            <groupId>net.sf.dozer</groupId>
+            <artifactId>dozer</artifactId>
+            <version>5.5.1</version>
         </dependency>                    
 
         <!--test dependencies-->
