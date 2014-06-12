@@ -36,6 +36,7 @@ public class VehicleModelServiceTest {
             .addPackage("cz.muni.fi.pv243.services.impl")
             .addPackage("cz.muni.fi.pv243.enums")
             .addPackage("cz.muni.fi.pv243.dao")
+            .addPackage("cz.muni.fi.pv243.dao.impl")
             .addPackage("cz.muni.fi.pv243.dto")
             .addPackage("cz.muni.fi.pv243.util")
             .addAsLibraries(Maven.resolver().loadPomFromFile("pom.xml").resolve("net.sf.dozer:dozer").withTransitivity().asFile())

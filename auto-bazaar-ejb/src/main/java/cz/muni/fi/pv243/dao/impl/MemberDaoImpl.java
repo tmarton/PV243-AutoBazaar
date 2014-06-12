@@ -1,5 +1,6 @@
-package cz.muni.fi.pv243.dao;
+package cz.muni.fi.pv243.dao.impl;
 
+import cz.muni.fi.pv243.dao.MemberDao;
 import cz.muni.fi.pv243.model.AdvertisingAccount;
 import cz.muni.fi.pv243.model.Member;
 

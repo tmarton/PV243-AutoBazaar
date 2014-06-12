@@ -48,14 +48,15 @@ public class VehiclePhotoDaoTest {
     @Deployment
     public static Archive<?> createTestArchive() {
         return ShrinkWrap.create(WebArchive.class, "test_vehicle_photo.war")
-                .addPackage("cz.muni.fi.pv243.model")
-                .addPackage("cz.muni.fi.pv243.enums")
-                .addPackage("cz.muni.fi.pv243.dao")
-                .addPackage("cz.muni.fi.pv243.util")
-                .addAsLibraries(Maven.resolver().loadPomFromFile("pom.xml").resolve("org.jadira.usertype:usertype.core").withTransitivity().asFile())
-                .addAsLibraries(Maven.resolver().loadPomFromFile("pom.xml").resolve("joda-time:joda-time").withTransitivity().asFile())
-                .addAsResource("META-INF/persistence.xml", ArchivePaths.create("META-INF/persistence.xml"))
-                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
+            .addPackage("cz.muni.fi.pv243.model")
+            .addPackage("cz.muni.fi.pv243.enums")
+            .addPackage("cz.muni.fi.pv243.dao")
+            .addPackage("cz.muni.fi.pv243.dao.impl")
+            .addPackage("cz.muni.fi.pv243.util")
+            .addAsLibraries(Maven.resolver().loadPomFromFile("pom.xml").resolve("org.jadira.usertype:usertype.core").withTransitivity().asFile())
+            .addAsLibraries(Maven.resolver().loadPomFromFile("pom.xml").resolve("joda-time:joda-time").withTransitivity().asFile())
+            .addAsResource("META-INF/persistence.xml", ArchivePaths.create("META-INF/persistence.xml"))
+            .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
     @Inject

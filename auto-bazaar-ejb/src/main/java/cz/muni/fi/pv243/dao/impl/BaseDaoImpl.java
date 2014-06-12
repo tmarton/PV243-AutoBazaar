@@ -1,5 +1,6 @@
-package cz.muni.fi.pv243.dao;
+package cz.muni.fi.pv243.dao.impl;
 
+import cz.muni.fi.pv243.dao.BaseDao;
 import org.hibernate.Session;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;

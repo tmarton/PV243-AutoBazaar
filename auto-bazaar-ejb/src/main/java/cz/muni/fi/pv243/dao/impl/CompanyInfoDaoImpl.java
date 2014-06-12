@@ -1,5 +1,6 @@
-package cz.muni.fi.pv243.dao;
+package cz.muni.fi.pv243.dao.impl;
 
+import cz.muni.fi.pv243.dao.CompanyInfoDao;
 import cz.muni.fi.pv243.model.AdvertisingAccount;
 import cz.muni.fi.pv243.model.CompanyInfo;
 import javax.ejb.Stateless;

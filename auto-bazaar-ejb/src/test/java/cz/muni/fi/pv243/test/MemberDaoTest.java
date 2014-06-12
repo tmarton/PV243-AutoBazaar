@@ -1,7 +1,6 @@
 package cz.muni.fi.pv243.test;
 
 import java.util.*;
-import java.util.logging.Logger;
 
 import javax.inject.Inject;
 import javax.naming.NamingException;
@@ -35,6 +34,7 @@ public class MemberDaoTest {
             .addPackage("cz.muni.fi.pv243.model")
             .addPackage("cz.muni.fi.pv243.enums")
             .addPackage("cz.muni.fi.pv243.dao")
+            .addPackage("cz.muni.fi.pv243.dao.impl")
             .addPackage("cz.muni.fi.pv243.util")
             .addAsLibraries(Maven.resolver().loadPomFromFile("pom.xml").resolve("org.jadira.usertype:usertype.core").withTransitivity().asFile())
             .addAsLibraries(Maven.resolver().loadPomFromFile("pom.xml").resolve("joda-time:joda-time").withTransitivity().asFile())

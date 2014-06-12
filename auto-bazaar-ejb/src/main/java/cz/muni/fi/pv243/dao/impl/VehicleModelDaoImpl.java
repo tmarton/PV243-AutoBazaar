@@ -1,5 +1,6 @@
-package cz.muni.fi.pv243.dao;
+package cz.muni.fi.pv243.dao.impl;
 
+import cz.muni.fi.pv243.dao.VehicleModelDao;
 import cz.muni.fi.pv243.model.VehicleBrand;
 import cz.muni.fi.pv243.model.VehicleModel;
 
