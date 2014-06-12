@@ -1,7 +1,9 @@
 package cz.muni.fi.pv243.services.impl;
 
 import cz.muni.fi.pv243.dao.VehiclePhotoDao;
+import cz.muni.fi.pv243.dto.AdvertisementDto;
 import cz.muni.fi.pv243.dto.VehiclePhotoDto;
+import cz.muni.fi.pv243.model.Advertisement;
 import cz.muni.fi.pv243.model.VehiclePhoto;
 import cz.muni.fi.pv243.services.VehiclePhotoService;
 import java.util.ArrayList;
@@ -59,5 +61,14 @@ public class VehiclePhotoServiceImpl implements VehiclePhotoService {
     public void remove(VehiclePhotoDto entity) {
         dao.remove(mapper.map(entity, VehiclePhoto.class));
         entity.setId(null);
+    }
+
+    @Override
+    public List<VehiclePhotoDto> getAllVehiclePhotosByAdvertisement(AdvertisementDto advert) {
+        List<VehiclePhoto> all = dao.getAllVehiclePhotosByAdvertisement(mapper.map(advert, Advertisement.class));
+        List<VehiclePhotoDto> res = new ArrayList<>(all.size());
+        for (VehiclePhoto a : all)
+            res.add(mapper.map(a, VehiclePhotoDto.class));
+        return res;
     }
 }

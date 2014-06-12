@@ -1,5 +1,6 @@
 package cz.muni.fi.pv243.services;
 
+import cz.muni.fi.pv243.dto.AdvertisementDto;
 import cz.muni.fi.pv243.dto.VehiclePhotoDto;
 import java.util.List;
 
@@ -19,4 +20,5 @@ public interface VehiclePhotoService {
 
     public void remove(VehiclePhotoDto entity); 
     
+    public List<VehiclePhotoDto> getAllVehiclePhotosByAdvertisement(AdvertisementDto advert);
 }

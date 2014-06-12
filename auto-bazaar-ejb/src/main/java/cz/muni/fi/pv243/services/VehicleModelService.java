@@ -1,6 +1,7 @@
 package cz.muni.fi.pv243.services;
 
 import cz.muni.fi.pv243.dao.VehicleModelDao;
+import cz.muni.fi.pv243.dto.VehicleBrandDto;
 import cz.muni.fi.pv243.dto.VehicleModelDto;
 import java.util.List;
 
@@ -20,12 +21,13 @@ public interface VehicleModelService {
 
     public void remove(VehicleModelDto entity); 
     
+    public List<VehicleModelDto> getAllVehicleModelsByBrand(VehicleBrandDto brand);
+    
     /**
      * for testing injection
      * @param dao 
      */
     public void setDao(VehicleModelDao dao);
-    
     public VehicleModelDao getDao();
     
 }

@@ -1,7 +1,9 @@
 package cz.muni.fi.pv243.services.impl;
 
 import cz.muni.fi.pv243.dao.VehicleModelDao;
+import cz.muni.fi.pv243.dto.VehicleBrandDto;
 import cz.muni.fi.pv243.dto.VehicleModelDto;
+import cz.muni.fi.pv243.model.VehicleBrand;
 import cz.muni.fi.pv243.model.VehicleModel;
 import cz.muni.fi.pv243.services.VehicleModelService;
 import java.util.ArrayList;
@@ -69,5 +71,14 @@ public class VehicleModelServiceImpl implements VehicleModelService {
     @Override
     public VehicleModelDao getDao() {
         return dao;
+    }
+
+    @Override
+    public List<VehicleModelDto> getAllVehicleModelsByBrand(VehicleBrandDto brand) {
+        List<VehicleModel> all = dao.getAllVehicleModelsByBrand(mapper.map(brand, VehicleBrand.class));
+        List<VehicleModelDto> res = new ArrayList<>(all.size());
+        for (VehicleModel a : all)
+            res.add(mapper.map(a, VehicleModelDto.class));
+        return res;
     }
 }

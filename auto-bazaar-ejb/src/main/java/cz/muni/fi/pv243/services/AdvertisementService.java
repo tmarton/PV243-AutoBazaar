@@ -1,6 +1,7 @@
 package cz.muni.fi.pv243.services;
 
 import cz.muni.fi.pv243.dto.AdvertisementDto;
+import cz.muni.fi.pv243.dto.AdvertisingAccountDto;
 import java.util.List;
 
 /**
@@ -19,4 +20,5 @@ public interface AdvertisementService {
 
     public void remove(AdvertisementDto entity); 
     
+    public List<AdvertisementDto> getAdvertisementsByAccount(AdvertisingAccountDto advertisingAccount);
 }

@@ -15,9 +15,10 @@ public interface MemberDao extends BaseDao<Member, Long> {
 	/**
      * Returns all members that are connected to 
      *
-     * @param company
+     * @param account
+     * @return 
      *
      */
-	public List<Member> getMembersByAdvertisingAccount(AdvertisingAccount company);
+	public List<Member> getMembersByAdvertisingAccount(AdvertisingAccount account);
 	
 }

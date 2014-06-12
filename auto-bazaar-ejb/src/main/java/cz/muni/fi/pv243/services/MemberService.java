@@ -1,5 +1,6 @@
 package cz.muni.fi.pv243.services;
 
+import cz.muni.fi.pv243.dto.AdvertisingAccountDto;
 import cz.muni.fi.pv243.dto.MemberDto;
 import java.util.List;
 
@@ -19,4 +20,5 @@ public interface MemberService {
 
     public void remove(MemberDto entity); 
     
+    public List<MemberDto> getMembersByAccount(AdvertisingAccountDto account);
 }

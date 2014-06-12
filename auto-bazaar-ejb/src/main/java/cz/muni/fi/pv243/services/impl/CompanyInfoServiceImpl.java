@@ -1,7 +1,9 @@
 package cz.muni.fi.pv243.services.impl;
 
 import cz.muni.fi.pv243.dao.CompanyInfoDao;
+import cz.muni.fi.pv243.dto.AdvertisingAccountDto;
 import cz.muni.fi.pv243.dto.CompanyInfoDto;
+import cz.muni.fi.pv243.model.AdvertisingAccount;
 import cz.muni.fi.pv243.model.CompanyInfo;
 import cz.muni.fi.pv243.services.CompanyInfoService;
 import java.util.ArrayList;
@@ -59,5 +61,11 @@ public class CompanyInfoServiceImpl implements CompanyInfoService {
     public void remove(CompanyInfoDto entity) {
         dao.remove(mapper.map(entity, CompanyInfo.class));
         entity.setId(null);
+    }
+
+    @Override
+    public CompanyInfoDto getCompanyInfoByAccount(AdvertisingAccountDto account) {
+        CompanyInfo info = dao.getCompanyInfoByAdvertisingAccount(mapper.map(account, AdvertisingAccount.class));
+        return info == null ? null : mapper.map(info, CompanyInfoDto.class);
     }
 }

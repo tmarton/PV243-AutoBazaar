@@ -2,7 +2,9 @@ package cz.muni.fi.pv243.services.impl;
 
 import cz.muni.fi.pv243.dao.AdvertisementDao;
 import cz.muni.fi.pv243.dto.AdvertisementDto;
+import cz.muni.fi.pv243.dto.AdvertisingAccountDto;
 import cz.muni.fi.pv243.model.Advertisement;
+import cz.muni.fi.pv243.model.AdvertisingAccount;
 import cz.muni.fi.pv243.services.AdvertisementService;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,5 +61,14 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     public void remove(AdvertisementDto entity) {
         dao.remove(mapper.map(entity, Advertisement.class));
         entity.setId(null);
+    }
+
+    @Override
+    public List<AdvertisementDto> getAdvertisementsByAccount(AdvertisingAccountDto advertisingAccount) {
+        List<Advertisement> all = dao.getAdvertisementsByAdvertisingAccount(mapper.map(advertisingAccount, AdvertisingAccount.class));
+        List<AdvertisementDto> res = new ArrayList<>(all.size());
+        for (Advertisement a : all)
+            res.add(mapper.map(a, AdvertisementDto.class));
+        return res;
     }
 }
