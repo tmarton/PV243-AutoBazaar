@@ -1,7 +1,6 @@
 package cz.muni.fi.pv243.model;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
@@ -14,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import org.hibernate.annotations.Type;
-import org.hibernate.validator.constraints.NotBlank;
 import org.joda.time.DateTime;
 
 /**

@@ -41,7 +41,7 @@ public class Member implements Serializable {
 	@Column(name = "phone_number")
 	private String phoneNumber;
 
-	@OneToMany(mappedBy="member", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy="member", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<MemberAdvertisingAccount> advertisingAccounts = new ArrayList<>();
 	
 	public Long getId() {
