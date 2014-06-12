@@ -3,15 +3,11 @@ package cz.muni.fi.pv243.test;
 import java.util.*;
 
 import javax.inject.Inject;
-import javax.naming.NamingException;
 
-import cz.muni.fi.pv243.dao.AdvertisementDao;
 import cz.muni.fi.pv243.dao.AdvertisingAccountDao;
-import cz.muni.fi.pv243.dao.CompanyInfoDao;
 import cz.muni.fi.pv243.dao.MemberDao;
 import cz.muni.fi.pv243.model.AdvertisingAccount;
 import cz.muni.fi.pv243.model.CompanyInfo;
-import cz.muni.fi.pv243.model.MemberAdvertisingAccount;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -61,9 +57,6 @@ public class AdvertisingAccountDaoTest {
 	@Inject
 	private AdvertisingAccountDao adAccountDao;
 
-	@Inject
-	private CompanyInfoDao companyInfoDao;
-
 	@Before
 	public void setUp() {
 
@@ -110,41 +103,7 @@ public class AdvertisingAccountDaoTest {
 		assertTrue(adAccountDao.getAll().isEmpty());
 	}
 
-	private AdvertisingAccount prepareAccount(Member member, CompanyInfo info) {
-		AdvertisingAccount account = new AdvertisingAccount();
-		account.setActive(true);
-		account.setCompanyInfo(info);
-
-		MemberAdvertisingAccount mToA = new MemberAdvertisingAccount();
-
-		mToA.setAdvertisingAccount(account);
-		mToA.setMember(member);
-		account.setConnectedMembers(Arrays.asList(mToA));
-
-		return account;
-
-	}
-
-	private CompanyInfo prepareCompanyInfo() {
-		CompanyInfo info = new CompanyInfo();
-		info.setCity("Brno");
-		info.setCountry("CZ");
-		info.setEmail("Example@ex.com");
-		info.setPhone("+421605666666");
-		info.setStreet("Lidicka 61");
-		info.setZipCode(63800);
-
-		return info;
-	}
-
-	private static Member getPreparedMember() {
-		Member m = new Member();
-		m.setName("test");
-		m.setEmail("test@test.cz");
-		m.setPhoneNumber("+421605666666");
-		m.setAdvertisingAccounts(new ArrayList<MemberAdvertisingAccount>());
-		return m;
-	}
+	
 
 	private static void assertMemberDeepEquals(Member m1, Member m2) {
 		assertEquals(m1.getId(), m2.getId());
@@ -191,16 +150,7 @@ public class AdvertisingAccountDaoTest {
 		}
 	}
 
-	private static void assertMemberAdvertisingAccountDeepEquals(
-			List<MemberAdvertisingAccount> l1, List<MemberAdvertisingAccount> l2) {
-		assertEquals(l1.size(), l2.size());
-		Collections.sort(l1, MemberAdvertisingAccountComparator);
-		Collections.sort(l2, MemberAdvertisingAccountComparator);
-		for (int i = 0; i < l2.size(); i++) {
-			// should be replaced with assert deep copy
-			assertEquals(l1.get(i).getId(), l2.get(i).getId());
-		}
-	}
+	
 
 	private static Comparator<Member> MemberKeyComparator = new Comparator<Member>() {
 
@@ -220,22 +170,6 @@ public class AdvertisingAccountDaoTest {
 		}
 	};
 
-	private static Comparator<MemberAdvertisingAccount> MemberAdvertisingAccountComparator = new Comparator<MemberAdvertisingAccount>() {
-		@Override
-		public int compare(MemberAdvertisingAccount o1,
-				MemberAdvertisingAccount o2) {
-			Long k1 = o1.getId();
-			Long k2 = o2.getId();
-			if (k1 == null && k2 == null) {
-				return 0;
-			} else if (k1 == null && k2 != null) {
-				return -1;
-			} else if (k1 != null && k2 == null) {
-				return 1;
-			} else {
-				return k1.compareTo(k2);
-			}
-		}
-	};
+	
 
 }

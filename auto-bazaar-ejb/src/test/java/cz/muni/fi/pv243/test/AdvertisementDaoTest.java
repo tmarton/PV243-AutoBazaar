@@ -1,6 +1,5 @@
 package cz.muni.fi.pv243.test;
 
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -20,8 +19,6 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.resolver.api.maven.Maven;
-import org.joda.time.DateTime;
-import org.joda.time.JodaTimePermission;
 import org.joda.time.format.DateTimeFormat;
 import org.junit.After;
 import org.junit.Before;
