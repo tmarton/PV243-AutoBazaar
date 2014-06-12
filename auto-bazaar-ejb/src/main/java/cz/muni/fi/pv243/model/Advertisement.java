@@ -9,9 +9,12 @@ import javax.validation.constraints.NotNull;
 
 import cz.muni.fi.pv243.enums.FuelType;
 import cz.muni.fi.pv243.enums.VehicleBodyType;
+
 import java.util.ArrayList;
 import java.util.Objects;
+
 import org.hibernate.annotations.Type;
+import org.hibernate.validator.constraints.NotBlank;
 import org.joda.time.DateTime;
 
 /**
@@ -68,7 +71,7 @@ public class Advertisement implements Serializable {
 	@NotNull
 	private String description;
 	
-	@OneToMany(mappedBy="advertisement")
+	@OneToMany(mappedBy="advertisement", fetch=FetchType.EAGER)
 	private List<VehiclePhoto> vehiclePhotos = new ArrayList<>();	
 	
 	public Advertisement() {
