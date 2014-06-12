@@ -8,7 +8,10 @@ import javax.persistence.TypedQuery;
 import cz.muni.fi.pv243.dao.AdvertisingAccountDao;
 import cz.muni.fi.pv243.model.AdvertisingAccount;
 import cz.muni.fi.pv243.model.Member;
-
+/**
+ * @author dubrouski
+ *
+ */
 @Stateless
 public class AdvertisingAccountDaoImpl extends
 		BaseDaoImpl<AdvertisingAccount, Long> implements AdvertisingAccountDao {
