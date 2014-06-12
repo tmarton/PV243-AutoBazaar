@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-   <modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-   <parent>
-      <artifactId>auto-bazaar</artifactId>
-      <groupId>cz.muni.fi.pv243</groupId>
-      <version>1.0-SNAPSHOT</version>
-   </parent>
+    <parent>
+        <artifactId>auto-bazaar</artifactId>
+        <groupId>cz.muni.fi.pv243</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
 
-   <artifactId>auto-bazaar-ejb</artifactId>
-   <packaging>ejb</packaging>
+    <artifactId>auto-bazaar-ejb</artifactId>
+    <packaging>ejb</packaging>
 
-   <name>auto-bazaar EJB module</name>
+    <name>auto-bazaar EJB module</name>
 
 
     <dependencyManagement>
@@ -34,254 +34,254 @@
         </dependencies>
     </dependencyManagement>
 
-   <dependencies>
-       <dependency>
-           <groupId>javax.enterprise</groupId>
-           <artifactId>cdi-api</artifactId>
-           <scope>provided</scope>
-       </dependency>
+    <dependencies>
+        <dependency>
+            <groupId>javax.enterprise</groupId>
+            <artifactId>cdi-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
 
-       <dependency>
-           <groupId>org.jboss.spec.javax.annotation</groupId>
-           <artifactId>jboss-annotations-api_1.2_spec</artifactId>
-           <scope>provided</scope>
-       </dependency>
+        <dependency>
+            <groupId>org.jboss.spec.javax.annotation</groupId>
+            <artifactId>jboss-annotations-api_1.2_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>
 
-       <dependency>
-           <groupId>org.jboss.spec.javax.ejb</groupId>
-           <artifactId>jboss-ejb-api_3.2_spec</artifactId>
-           <scope>provided</scope>
-       </dependency>
+        <dependency>
+            <groupId>org.jboss.spec.javax.ejb</groupId>
+            <artifactId>jboss-ejb-api_3.2_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>
 
-       <dependency>
-           <groupId>org.hibernate.javax.persistence</groupId>
-           <artifactId>hibernate-jpa-2.1-api</artifactId>
-           <scope>provided</scope>
-       </dependency>
+        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.1-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
 
-       <dependency>
-           <groupId>org.hibernate</groupId>
-           <artifactId>hibernate-core</artifactId>
-           <scope>provided</scope>
-       </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <scope>provided</scope>
+        </dependency>
 
-       <dependency>
-           <groupId>org.hibernate</groupId>
-           <artifactId>hibernate-validator</artifactId>
-           <scope>provided</scope>
-           <exclusions>
-               <exclusion>
-                   <groupId>org.slf4j</groupId>
-                   <artifactId>slf4j-api</artifactId>
-               </exclusion>
-           </exclusions>
-       </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
 
-       <!--date dependencies-->
-       <!--dependency>
-           <groupId>joda-time</groupId>
-           <artifactId>joda-time-hibernate</artifactId>
-           <version>1.3</version>
-           <exclusions>
-               <exclusion>
-                   <artifactId>org.hibernate</artifactId>
-                   <groupId>hibernate</groupId>
-               </exclusion>
-               <exclusion>
-                   <artifactId>joda-time</artifactId>
-                   <groupId>joda-time</groupId>
-               </exclusion>
-           </exclusions>
-       </dependency-->
-       <dependency>
-           <artifactId>joda-time</artifactId>
-           <groupId>joda-time</groupId>
-           <version>2.0</version>
-           <exclusions>
-               <exclusion>
-                   <groupId>junit</groupId>
-                   <artifactId>junit</artifactId>
-               </exclusion>
-           </exclusions>
-       </dependency>
+        <!--date dependencies-->
+        <!--dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time-hibernate</artifactId>
+            <version>1.3</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>org.hibernate</artifactId>
+                    <groupId>hibernate</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>joda-time</artifactId>
+                    <groupId>joda-time</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency-->
+        <dependency>
+            <artifactId>joda-time</artifactId>
+            <groupId>joda-time</groupId>
+            <version>2.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>junit</groupId>
+                    <artifactId>junit</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
         <dependency>
             <groupId>org.jadira.usertype</groupId>
             <artifactId>usertype.core</artifactId>
             <version>3.2.0.GA</version>
-        </dependency>       
+        </dependency>                    
 
-       <!--test dependencies-->
-      <dependency>
-         <groupId>junit</groupId>
-         <artifactId>junit</artifactId>
-      </dependency>
+        <!--test dependencies-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
 
-       <dependency>
-           <groupId>org.jboss.shrinkwrap.resolver</groupId>
-           <artifactId>shrinkwrap-resolver-api-maven</artifactId>
-           <scope>test</scope>
-       </dependency>
-       <dependency>
-           <groupId>org.jboss.shrinkwrap.resolver</groupId>
-           <artifactId>shrinkwrap-resolver-impl-maven</artifactId>
-           <scope>test</scope>
-       </dependency>
+        <dependency>
+            <groupId>org.jboss.shrinkwrap.resolver</groupId>
+            <artifactId>shrinkwrap-resolver-api-maven</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.shrinkwrap.resolver</groupId>
+            <artifactId>shrinkwrap-resolver-impl-maven</artifactId>
+            <scope>test</scope>
+        </dependency>
 
-       <dependency>
-           <groupId>org.jboss.arquillian.junit</groupId>
-           <artifactId>arquillian-junit-container</artifactId>
-           <scope>test</scope>
-       </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.junit</groupId>
+            <artifactId>arquillian-junit-container</artifactId>
+            <scope>test</scope>
+        </dependency>
 
-       <dependency>
-           <groupId>org.jboss.arquillian.protocol</groupId>
-           <artifactId>arquillian-protocol-servlet</artifactId>
-           <scope>test</scope>
-       </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.protocol</groupId>
+            <artifactId>arquillian-protocol-servlet</artifactId>
+            <scope>test</scope>
+        </dependency>
 
 
-   </dependencies>
+    </dependencies>
 
-   <build>
-      <finalName>${project.artifactId}</finalName>
-      <plugins>
-         <plugin>
-            <artifactId>maven-ejb-plugin</artifactId>
-            <version>${version.ejb.plugin}</version>
-            <configuration>
-               <!-- Tell Maven we are using EJB 3.1 -->
-               <ejbVersion>3.1</ejbVersion>
-            </configuration>
-         </plugin>
-      </plugins>
-   </build>
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <artifactId>maven-ejb-plugin</artifactId>
+                <version>${version.ejb.plugin}</version>
+                <configuration>
+                    <!-- Tell Maven we are using EJB 3.1 -->
+                    <ejbVersion>3.1</ejbVersion>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
-   <profiles>
-      <profile>
-         <!-- The default profile skips all tests, though you can tune it 
+    <profiles>
+        <profile>
+            <!-- The default profile skips all tests, though you can tune it 
             to run just unit tests based on a custom pattern -->
-         <!-- Seperate profiles are provided for running all tests, including 
+            <!-- Seperate profiles are provided for running all tests, including 
             Arquillian tests that execute in the specified container -->
-         <id>default</id>
-          <activation>
-              <activeByDefault>true</activeByDefault>
-          </activation>
-         <build>
-            <plugins>
-               <plugin>
-                  <artifactId>maven-surefire-plugin</artifactId>
-                  <version>2.4.3</version>
-                  <configuration>
-                     <skip>true</skip>
-                  </configuration>
-               </plugin>
-            </plugins>
-         </build>
-      </profile>
+            <id>default</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>2.4.3</version>
+                        <configuration>
+                            <skip>true</skip>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
 
-      <profile>
-         <!-- We add the JBoss repository as we need the JBoss AS connectors 
+        <profile>
+            <!-- We add the JBoss repository as we need the JBoss AS connectors 
             for Arquillian -->
-         <repositories>
-            <!-- The JBoss Community public repository is a composite repository 
-               of several major repositories -->
-            <!-- see http://community.jboss.org/wiki/MavenGettingStarted-Users -->
-            <repository>
-               <id>jboss-public-repository</id>
-               <name>JBoss Repository</name>
-               <url>http://repository.jboss.org/nexus/content/groups/public</url>
-               <!-- These optional flags are designed to speed up your builds 
-                  by reducing remote server calls -->
-               <releases>
-                  <enabled>true</enabled>
-               </releases>
-               <snapshots>
-                  <enabled>false</enabled>
-               </snapshots>
-            </repository>
-         </repositories>
+            <repositories>
+                <!-- The JBoss Community public repository is a composite repository 
+                of several major repositories -->
+                <!-- see http://community.jboss.org/wiki/MavenGettingStarted-Users -->
+                <repository>
+                    <id>jboss-public-repository</id>
+                    <name>JBoss Repository</name>
+                    <url>http://repository.jboss.org/nexus/content/groups/public</url>
+                    <!-- These optional flags are designed to speed up your builds 
+                    by reducing remote server calls -->
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
 
-         <pluginRepositories>
-            <pluginRepository>
-               <id>jboss-public-repository</id>
-               <name>JBoss Repository</name>
-               <url>http://repository.jboss.org/nexus/content/groups/public</url>
-               <releases>
-                  <enabled>true</enabled>
-               </releases>
-               <snapshots>
-                  <enabled>false</enabled>
-               </snapshots>
-            </pluginRepository>
-         </pluginRepositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>jboss-public-repository</id>
+                    <name>JBoss Repository</name>
+                    <url>http://repository.jboss.org/nexus/content/groups/public</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </pluginRepository>
+            </pluginRepositories>
 
-         <!-- An optional Arquillian testing profile that executes tests 
+            <!-- An optional Arquillian testing profile that executes tests 
             in your JBoss AS instance -->
-         <!-- This profile will start a new JBoss AS instance, and execute 
+            <!-- This profile will start a new JBoss AS instance, and execute 
             the test, shutting it down when done -->
-         <!-- Run with: mvn clean test -Parq-jbossas-managed -->
-         <id>arq-jbossas-managed</id>
-         <dependencies>
-             <dependency>
-                 <groupId>org.wildfly</groupId>
-                 <artifactId>wildfly-arquillian-container-managed</artifactId>
-                 <version>${version.arquillian.container}</version>
-                 <scope>test</scope>
-             </dependency>
-         </dependencies>
+            <!-- Run with: mvn clean test -Parq-jbossas-managed -->
+            <id>arq-jbossas-managed</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.wildfly</groupId>
+                    <artifactId>wildfly-arquillian-container-managed</artifactId>
+                    <version>${version.arquillian.container}</version>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
 
-      </profile>
+        </profile>
 
-      <profile>
-         <!-- We add the JBoss repository as we need the JBoss AS connectors 
+        <profile>
+            <!-- We add the JBoss repository as we need the JBoss AS connectors 
             for Arquillian -->
-         <repositories>
-            <!-- The JBoss Community public repository is a composite repository 
-               of several major repositories -->
-            <!-- see http://community.jboss.org/wiki/MavenGettingStarted-Users -->
-            <repository>
-               <id>jboss-public-repository</id>
-               <name>JBoss Repository</name>
-               <url>http://repository.jboss.org/nexus/content/groups/public</url>
-               <!-- These optional flags are designed to speed up your builds 
-                  by reducing remote server calls -->
-               <releases>
-                  <enabled>true</enabled>
-               </releases>
-               <snapshots>
-                  <enabled>false</enabled>
-               </snapshots>
-            </repository>
-         </repositories>
+            <repositories>
+                <!-- The JBoss Community public repository is a composite repository 
+                of several major repositories -->
+                <!-- see http://community.jboss.org/wiki/MavenGettingStarted-Users -->
+                <repository>
+                    <id>jboss-public-repository</id>
+                    <name>JBoss Repository</name>
+                    <url>http://repository.jboss.org/nexus/content/groups/public</url>
+                    <!-- These optional flags are designed to speed up your builds 
+                    by reducing remote server calls -->
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
 
-         <pluginRepositories>
-            <pluginRepository>
-               <id>jboss-public-repository</id>
-               <name>JBoss Repository</name>
-               <url>http://repository.jboss.org/nexus/content/groups/public</url>
-               <releases>
-                  <enabled>true</enabled>
-               </releases>
-               <snapshots>
-                  <enabled>false</enabled>
-               </snapshots>
-            </pluginRepository>
-         </pluginRepositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>jboss-public-repository</id>
+                    <name>JBoss Repository</name>
+                    <url>http://repository.jboss.org/nexus/content/groups/public</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </pluginRepository>
+            </pluginRepositories>
 
-         <!-- An optional Arquillian testing profile that executes tests 
+            <!-- An optional Arquillian testing profile that executes tests 
             in a remote JBoss AS instance -->
-         <!-- Run with: mvn clean test -Parq-jbossas-remote -->
-         <id>arq-jbossas-remote</id>
-         <dependencies>
-             <dependency>
-                 <groupId>org.wildfly</groupId>
-                 <artifactId>wildfly-arquillian-container-remote</artifactId>
-                 <version>${version.arquillian.container}</version>
-                 <scope>test</scope>
-             </dependency>
-         </dependencies>
-      </profile>
+            <!-- Run with: mvn clean test -Parq-jbossas-remote -->
+            <id>arq-jbossas-remote</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.wildfly</groupId>
+                    <artifactId>wildfly-arquillian-container-remote</artifactId>
+                    <version>${version.arquillian.container}</version>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+        </profile>
 
-   </profiles>
+    </profiles>
 
 </project>
