@@ -1,5 +1,6 @@
 package cz.muni.fi.pv243.data;
 
+import cz.muni.fi.pv243.dto.MemberDto;
 import cz.muni.fi.pv243.model.Member;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -30,7 +31,7 @@ public class MemberListProducer {
       return members;
    }
 
-   public void onMemberListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final Member member) {
+   public void onMemberListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final MemberDto member) {
       retrieveAllMembersOrderedByName();
    }
 
