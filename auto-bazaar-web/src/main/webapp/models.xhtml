@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/default.xhtml">
+	<ui:define name="content">
+		<h:form id="reg">
+			<h2>Vehicle model management</h2>
+			<table>
+				<tr>
+					<th style="text-align: right;"><h:outputLabel for="brand"
+							value="Vehicle brand:" /></th>
+					<td><h:selectOneListbox id="brand"
+							value="#{modelsManagement.newModel.brand}">
+							<f:converter converterId="vehicleBrandConverter"/>
+							<f:selectItems value="#{brands}" />
+						</h:selectOneListbox> <h:message for="brand" errorClass="invalid" /></td>
+				</tr>
+
+				<tr>
+					<th style="text-align: right;"><h:outputLabel for="name"
+							value="Vehicle model name:" /></th>
+					<td><h:inputText id="name"
+							value="#{modelsManagement.newModel.name}" /> <h:message
+							for="name" errorClass="invalid" /></td>
+				</tr>
+			</table>
+			<p>
+				<h:commandButton id="create" action="#{modelsManagement.create}"
+					value="Create" />
+				<h:outputText value=" Created!"
+					rendered="#{facesContext.postback and empty facesContext.messageList}"
+					style="color: green;" />
+			</p>
+		</h:form>
+
+		<h2>Models</h2>
+		<h:panelGroup rendered="#{empty models}">
+			<em>No stored models.</em>
+		</h:panelGroup>
+		<h:dataTable var="_model" value="#{models}"
+			rendered="#{not empty models}">
+			<h:column>
+				<f:facet name="header">Id</f:facet>
+                #{_model.id}
+            </h:column>
+			<h:column>
+				<f:facet name="header">Brand</f:facet>
+                #{_model.brand.name}
+            </h:column>
+			<h:column>
+				<f:facet name="header">Name</f:facet>
+                #{_model.name}
+            </h:column>
+		</h:dataTable>
+
+
+	</ui:define>
+</ui:composition>

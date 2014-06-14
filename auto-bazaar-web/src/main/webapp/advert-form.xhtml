@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/default.xhtml">
+	<ui:define name="content">
+		<h:form id="reg">
+			<h2>Create/Edit advertisement</h2>
+			<table>
+				<tr>
+					<th style="text-align: right;"><h:outputLabel for="brand"
+							value="Vehicle brand:" /></th>
+					<td><h:selectOneListbox id="brand"
+							value="#{advertisingCreation.newAdvert.brand}">
+							<f:converter converterId="vehicleBrandConverter" />
+							<f:selectItems value="#{brands}" />
+						</h:selectOneListbox> <h:message for="brand" errorClass="invalid" /></td>
+				</tr>
+				<tr>
+					<th style="text-align: right;"><h:outputLabel for="model"
+							value="Vehicle model:" /></th>
+					<td><h:selectOneListbox id="model"
+							value="#{advertisingCreation.newAdvert.model}">
+							<f:converter converterId="vehicleModelConverter" />
+							<f:selectItems value="#{models}" />
+						</h:selectOneListbox> <h:message for="model" errorClass="invalid" /></td>
+				</tr>
+				<tr>
+					<th style="text-align: right;"><h:outputLabel
+							for="productionDate" value="Production date:" /></th>
+					<td><h:inputText id="productionDate"
+							value="#{advertisingCreation.newAdvert.productionDate}">
+							<f:convertDateTime pattern="yyyy-MM-dd" />
+						</h:inputText> <h:message for="productionDate" errorClass="invalid" /></td>
+				</tr>
+				<tr>
+					<th style="text-align: right;"><h:outputLabel
+							for="engineDisplacement" value="Engine displacement:" /></th>
+					<td><h:inputText id="engineDisplacement"
+							value="#{advertisingCreation.newAdvert.engineDisplacement}" /> <h:message
+							for="engineDisplacement" errorClass="invalid" /></td>
+				</tr>
+
+			</table>
+			<p>
+				<h:commandButton id="create" action="#{advertisingCreation.create}"
+					value="Create" />
+				<h:outputText value=" Created!"
+					rendered="#{facesContext.postback and empty facesContext.messageList}"
+					style="color: green;" />
+			</p>
+		</h:form>
+	</ui:define>
+</ui:composition>

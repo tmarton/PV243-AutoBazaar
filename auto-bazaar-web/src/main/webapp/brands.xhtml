@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/default.xhtml">
+	<ui:define name="content">
+		<h:form id="reg">
+			<h2>Vehicle brands management</h2>
+			<table>
+				<tr>
+					<th style="text-align: right;"><h:outputLabel for="name"
+							value="Vehicle brand name:" /></th>
+					<td><h:inputText id="brand"
+							value="#{brandsManagement.newBrand.name}" /> <h:message
+							for="name" errorClass="invalid" /></td>
+				</tr>
+			</table>
+			<p>
+				<h:commandButton id="create" action="#{brandsManagement.create}"
+					value="Create" />
+				<h:outputText value=" Created!"
+					rendered="#{facesContext.postback and empty facesContext.messageList}"
+					style="color: green;" />
+			</p>
+		</h:form>
+
+		<h2>Brands</h2>
+		<h:panelGroup rendered="#{empty brands}">
+			<em>No stored brands.</em>
+		</h:panelGroup>
+		<h:dataTable var="_brand" value="#{brands}"
+			rendered="#{not empty brands}">
+			<h:column>
+				<f:facet name="header">Id</f:facet>
+                #{_brand.id}
+            </h:column>
+			<h:column>
+				<f:facet name="header">Name</f:facet>
+                #{_brand.name}
+            </h:column>
+		</h:dataTable>
+
+
+	</ui:define>
+</ui:composition>

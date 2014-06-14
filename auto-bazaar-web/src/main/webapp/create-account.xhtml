@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/default.xhtml">
+	<ui:define name="content">
+		<h:form id="reg">
+			<h2>Accounts management</h2>
+			<!-- account data -->
+			<table>
+
+				
+				<tr>
+					<th style="text-align: right;"><h:outputLabel
+							for="connectedMembers" value="Connected members:" /></th>
+					<td><h:selectManyListbox id="connectedMembers"
+							value="#{accountManagement.newAccount.connectedMembers}">
+							<f:converter converterId="memberConverter" />
+							<f:selectItems value="#{members}" />
+						</h:selectManyListbox> <h:message for="connectedMembers" errorClass="invalid" /></td>
+				</tr>
+				<tr>
+					<th style="text-align: right;"><h:outputLabel for="member"
+							value="Active:" /></th>
+					<td><h:selectBooleanCheckbox id="isActive"
+							value="#{accountManagement.newAccount.isActive}">
+						</h:selectBooleanCheckbox> <h:message for="isActive" errorClass="invalid" /></td>
+				</tr>
+
+			</table>
+
+
+			<!-- company info -->
+			<table>
+				<tr>
+					<th style="text-align: right;"><h:outputLabel for="country"
+							value="Company's Country: " /></th>
+					<td><h:inputText id="country"
+							value="#{accountManagement.newInfo.country}" /> <h:message for="country"
+							errorClass="invalid" /></td>
+				</tr>
+				<tr>
+					<th style="text-align: right;"><h:outputLabel for="city"
+							value="Company's City: " /></th>
+					<td><h:inputText id="city"
+							value="#{accountManagement.newInfo.city}" /> <h:message for="city"
+							errorClass="invalid" /></td>
+				</tr>
+				<tr>
+					<th style="text-align: right;"><h:outputLabel for="street"
+							value="Company's Street " /></th>
+					<td><h:inputText id="street"
+							value="#{accountManagement.newInfo.street}" /> <h:message for="street"
+							errorClass="invalid" /></td>
+				</tr>
+				<tr>
+					<th style="text-align: right;"><h:outputLabel for="zipCode"
+							value="Company's ZipCode: " /></th>
+					<td><h:inputText id="zipCode"
+							value="#{accountManagement.newInfo.zipCode}" /> <h:message for="zipCode"
+							errorClass="invalid" /></td>
+				</tr>
+				<tr>
+					<th style="text-align: right;"><h:outputLabel for="phone"
+							value="Company's Phone: " /></th>
+					<td><h:inputText id="phone"
+							value="#{accountManagement.newInfo.phone}" /> <h:message for="phone"
+							errorClass="invalid" /></td>
+				</tr>
+				<tr>
+					<th style="text-align: right;"><h:outputLabel for="email"
+							value="Company's Email: " /></th>
+					<td><h:inputText id="email"
+							value="#{accountManagement.newInfo.email}" /> <h:message for="email"
+							errorClass="invalid" /></td>
+				</tr>
+
+			</table>
+
+
+			<p>
+				<h:commandButton id="create" action="#{accountManagement.create}"
+					value="Create" />
+				<h:outputText value=" Created!"
+					rendered="#{facesContext.postback and empty facesContext.messageList}"
+					style="color: green;" />
+			</p>
+		</h:form>
+
+		
+
+
+	</ui:define>
+</ui:composition>

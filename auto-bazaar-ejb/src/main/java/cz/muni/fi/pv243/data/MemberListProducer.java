@@ -2,12 +2,14 @@ package cz.muni.fi.pv243.data;
 
 import cz.muni.fi.pv243.dto.MemberDto;
 import cz.muni.fi.pv243.model.Member;
+import cz.muni.fi.pv243.services.MemberService;
+
 import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.event.Observes;
 import javax.enterprise.event.Reception;
-
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -19,15 +21,15 @@ import javax.persistence.criteria.Root;
 @RequestScoped
 public class MemberListProducer {
    @Inject
-   private EntityManager em;
+   private MemberService memberService;
 
-   private List<Member> members;
+   private List<MemberDto> members;
 
    // @Named provides access the return value via the EL variable name "members" in the UI (e.g.,
    // Facelets or JSP view)
    @Produces
    @Named
-   public List<Member> getMembers() {
+   public List<MemberDto> getMembers() {
       return members;
    }
 
@@ -37,9 +39,6 @@ public class MemberListProducer {
 
    @PostConstruct
    public void retrieveAllMembersOrderedByName() {
-      CriteriaBuilder cb = em.getCriteriaBuilder();
-      CriteriaQuery<Member> criteria = cb.createQuery(Member.class);
-      Root<Member> member = criteria.from(Member.class);
-      members = em.createQuery(criteria).getResultList();
+      members = memberService.getAll();
    }
 }
