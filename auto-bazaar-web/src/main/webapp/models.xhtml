@@ -12,9 +12,9 @@
 					<th style="text-align: right;"><h:outputLabel for="brand"
 							value="Vehicle brand:" /></th>
 					<td><h:selectOneListbox id="brand"
-							value="#{modelsManagement.newModel.brand}">
+                                                                value="#{modelsManagement.newModel.brand}">
 							<f:converter converterId="vehicleBrandConverter"/>
-							<f:selectItems value="#{brands}" />
+                                                        <f:selectItems value="#{brands}" var="b" itemLabel="#{b.name}" />
 						</h:selectOneListbox> <h:message for="brand" errorClass="invalid" /></td>
 				</tr>
 

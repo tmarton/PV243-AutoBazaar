@@ -17,7 +17,7 @@
 					<td><h:selectManyListbox id="connectedMembers"
 							value="#{accountManagement.newAccount.connectedMembers}">
 							<f:converter converterId="memberConverter" />
-							<f:selectItems value="#{members}" />
+                                                        <f:selectItems value="#{members}" var="m" itemLabel="#{m.name}"/>
 						</h:selectManyListbox> <h:message for="connectedMembers" errorClass="invalid" /></td>
 				</tr>
 				<tr>

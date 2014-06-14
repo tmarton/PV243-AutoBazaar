@@ -14,7 +14,7 @@
 					<td><h:selectOneListbox id="brand"
 							value="#{advertisingCreation.newAdvert.brand}">
 							<f:converter converterId="vehicleBrandConverter" />
-							<f:selectItems value="#{brands}" />
+							<f:selectItems value="#{brands}" var="b" itemLabel="#{b.name}" />
 						</h:selectOneListbox> <h:message for="brand" errorClass="invalid" /></td>
 				</tr>
 				<tr>
@@ -23,7 +23,7 @@
 					<td><h:selectOneListbox id="model"
 							value="#{advertisingCreation.newAdvert.model}">
 							<f:converter converterId="vehicleModelConverter" />
-							<f:selectItems value="#{models}" />
+                                                        <f:selectItems value="#{models}" var="m" itemLabel="#{m.name}"/>
 						</h:selectOneListbox> <h:message for="model" errorClass="invalid" /></td>
 				</tr>
 				<tr>
